@@ -9,4 +9,7 @@ Until now :
 
 2. renders html in javascript in HomeScreen.js
 
-this commit :  3. The product page gets loaded when clicked . done with url parsing. Intelligent work. (see app.js and utils.js)
+  3. The product page gets loaded when clicked . done with url parsing. Intelligent work. (see app.js and utils.js)
+
+this commit: 4. product data know loaded from the server using fetch 'localhost:3000/api/products'  
+rounter function in app.js made async so is the Homescree.js 

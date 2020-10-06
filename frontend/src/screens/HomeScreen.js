@@ -1,8 +1,15 @@
-import data from "../data.js";
+//import data from "../data.js";
 
 const HomeScreen = {
-  rend: () => {
-    const { products } = data;
+  rend: async () => {
+    //const { products } = data;
+    const option = {
+      headers: {
+        "content-Type" : "application/json" ,},
+    }
+    const response = await fetch('http://localhost:3000/api/products', option)
+    if(!response || !response.ok){console.log('eror in fetch data from server');}
+    const products = await response.json() ;
     return `
     <ul class="products">
       ${products.map((product) => `
