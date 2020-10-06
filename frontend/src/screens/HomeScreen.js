@@ -1,5 +1,5 @@
 //import data from "../data.js";
-
+import axios from 'axios' ;
 const HomeScreen = {
   rend: async () => {
     //const { products } = data;
@@ -7,9 +7,9 @@ const HomeScreen = {
       headers: {
         "content-Type" : "application/json" ,},
     }
-    const response = await fetch('http://localhost:3000/api/products', option)
-    if(!response || !response.ok){console.log('eror in fetch data from server');}
-    const products = await response.json() ;
+    const response = await axios('http://localhost:3000/api/products', option)
+    if(!response || response.statusText !== 'OK'){console.log('eror in fetch data from server');}
+    const products = await response.data ;
     return `
     <ul class="products">
       ${products.map((product) => `
