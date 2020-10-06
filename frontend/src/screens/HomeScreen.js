@@ -3,7 +3,6 @@ import data from "../data.js";
 const HomeScreen = {
   rend: () => {
     const { products } = data;
-
     return `
     <ul class="products">
       ${products.map((product) => `
@@ -13,7 +12,7 @@ const HomeScreen = {
             <img src="${product.image}" alt="${product.name}" />
           </a>
         <div class="product-name">
-          <a href="/#/product/1">
+          <a href="/#/product/${product._id}">
             ${product.name}
           </a>
         </div>
@@ -23,12 +22,9 @@ const HomeScreen = {
         <div class="product-price">
           $${product.price}
         </div>
+        <a href="/#/product/${product._id}">SEE DETAILS</a>
         </div>
-      </li>
-      `
-        )
-        .join("\n")}
-    `;
+      </li>`).join("\n")} `;
   },
 };
 export default HomeScreen;

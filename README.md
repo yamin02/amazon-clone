@@ -8,3 +8,5 @@ Until now :
 1. The products json in data.js is used in  index.js via  the HomeScreen.js
 
 2. renders html in javascript in HomeScreen.js
+
+this commit :  3. The product page gets loaded when clicked . done with url parsing. Intelligent work. (see app.js and utils.js)
