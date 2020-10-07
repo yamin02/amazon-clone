@@ -19,9 +19,11 @@ Until now :
  <!-- Axios is a Javascript library used to make http requests from node.js or XMLHttpRequests from the browser and it supports the Promise API that is native to JS ES6. Another feature that it has over .fetch() is that it performs automatic transforms of JSON data.
 If you use .fetch() there is a two-step process when handing JSON data. The first is to make the actual request and then the second is to call the .json() method on the response -->
 
-#this commit: 
+
 7. A .Use of babel ( for converting server side ES5 compatible to ES6 syntax . Hence in server.js change require to import from)
 
 7. B. enable code lint. (eslint)
 <!--Linting is the automated checking of your source code for programmatic and stylistic errors. This is done by using a lint tool (otherwise known as linter). A lint tool is a basic static code analyzer. -->
 
+#this commit: 
+8. Star ratings added see the ratings.js

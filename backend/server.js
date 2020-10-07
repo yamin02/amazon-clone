@@ -11,7 +11,8 @@ app.get('/api/products' ,(req,res) =>{
     res.send(data.products);
     console.log(data.products);
 });
-var process ;
+//var process ;
+// eslint-disable-next-line no-undef
 const port = process.env.PORT || 3000 ;
 app.listen(port, () =>{
     console.log("We are listing to the PORT : 3000")

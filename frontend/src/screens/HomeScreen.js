@@ -1,5 +1,7 @@
 //import data from "../data.js";
 import axios from 'axios' ;
+import Rating from '../components/ratings';
+
 const HomeScreen = {
   rend: async () => {
     //const { products } = data;
@@ -8,7 +10,8 @@ const HomeScreen = {
         "content-Type" : "application/json" ,},
     }
     const response = await axios('http://localhost:3000/api/products', option)
-    if(!response || response.statusText !== 'OK'){console.log('eror in fetch data from server');}
+    if(!response || response.statusText !== 'OK')
+    {console.log('eror in fetch data from server');}
     const products = await response.data ;
     return `
     <ul class="products">
@@ -25,6 +28,12 @@ const HomeScreen = {
         </div>
         <div class="product-brand">
           ${product.brand}
+        </div>
+        <div class = 'product-ratin'>
+        ${Rating.rend({
+          value: product.rating , 
+          text: product.numReviews + 'reviews' 
+        })}
         </div>
         <div class="product-price">
           $${product.price}

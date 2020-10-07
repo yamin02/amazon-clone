@@ -10,6 +10,7 @@ export default
             brand : 'nike',
             numReviews:10,
             countInstock:6,
+            rating: 3.5
         },
         {
             _id:'2',
@@ -20,6 +21,7 @@ export default
             brand : 'nike',
             numReviews:10,
             countInstock:6,
+            rating: 4.5
         },
         {
             _id:'3',
@@ -30,6 +32,7 @@ export default
             brand : 'nike',
             numReviews:10,
             countInstock:6,
+            rating: 1.5
         },
         {
             _id:'4',
@@ -40,6 +43,7 @@ export default
             brand : 'nike',
             numReviews:10,
             countInstock:6,
+            rating: 2.5
         },
         {
             _id:'5',
@@ -50,6 +54,7 @@ export default
             brand : 'nike',
             numReviews:10,
             countInstock:6,
+            rating: 4.5
         },
     ]
 }
