@@ -1,6 +1,7 @@
 //import data from "../data.js";
 import axios from 'axios' ;
 import Rating from '../components/ratings';
+import { apiUrl } from '../config';
 
 const HomeScreen = {
   rend: async () => {
@@ -9,7 +10,7 @@ const HomeScreen = {
       headers: {
         "content-Type" : "application/json" ,},
     }
-    const response = await axios('http://localhost:3000/api/products', option)
+    const response = await axios(`${apiUrl}/api/products`, option)
     if(!response || response.statusText !== 'OK')
     {console.log('eror in fetch data from server');}
     const products = await response.data ;

@@ -1,6 +1,6 @@
 const ErrorScreen ={
     rend: () =>{
-        return `<div> NO Page found </div>`;
+        return `<div>this is error page NO Page found </div>`;
     },
 };
 
