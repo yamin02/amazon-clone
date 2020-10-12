@@ -2,10 +2,13 @@ import HomeScreen from './screens/HomeScreen.js';
 import ProductScreen from './screens/ProductScreen.js';
 import { parserequestUrl } from './utils.js';
 import Error404Screeen from './screens/ErrorScreen.js' ;
+import Cartscreen from './screens/Cartscreen.js';
 
 const routes ={
     '/': HomeScreen,
     "/product/:id" : ProductScreen ,
+    "/cart/:id" : Cartscreen , 
+    "/cart" : Cartscreen ,
 }
 
 const rounter = async () =>{

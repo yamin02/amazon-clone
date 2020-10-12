@@ -5,5 +5,11 @@ export const parserequestUrl = () => {
         resource: request[1],
         id: request[2] ,
         action: request[3] ,
+      
     }
+}
+
+export const rerender= async (comp) =>{
+    document.getElementById("main-container").innerHTML = await comp.rend() ;
+    await comp.after_render();
 }
