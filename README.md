@@ -26,6 +26,9 @@ If you use .fetch() there is a two-step process when handing JSON data. The firs
 <!--Linting is the automated checking of your source code for programmatic and stylistic errors. This is done by using a lint tool (otherwise known as linter). A lint tool is a basic static code analyzer. -->
 
 8. Star ratings added see the ratings.js
-
-#this Component: 
+ 
 9. Product UI
+
+
+#this Commit :
+10 . connected to mongodb in backend
