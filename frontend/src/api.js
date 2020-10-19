@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
 import { apiUrl } from "./config";
+import { getUserinfo } from "./localStorage";
 
 
 export const getProduct = async (id) =>{
@@ -53,6 +54,34 @@ export const register = async({name , email , password})=>{
             method : 'POST',
             headers : {
                 "Content-Type" : "application/json"
+            },
+            data:{
+                name,
+                email,
+                password,
+            },
+        });
+        if(response.statusText !== 'OK'){
+           throw new Error(response.data.message); 
+        }
+        return response.data ;
+    }
+    catch(err){
+        console.log(err);
+        return {error: err.response.data.message || err.message};
+    }
+}
+
+export const update = async({name,email,password})=>{
+    try {
+        const {id, token} = getUserinfo();
+        const response = await axios({
+            url : `${apiUrl}/api/users/${id}` ,
+            //For updating we use PUT but creating we use POST
+            method : 'PUT',
+            headers : {
+                "Content-Type" : "application/json",
+                 Authorization : `Bearer ${token}`,
             },
             data:{
                 name,

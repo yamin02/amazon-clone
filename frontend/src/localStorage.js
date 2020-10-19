@@ -10,7 +10,7 @@ export const setCartitems = (cartItems) =>{
 }
 
 export const setUserInfo = ({
-    _id = '',
+    id = '',
     name = '',
     email ='',
     password='',
@@ -18,7 +18,7 @@ export const setUserInfo = ({
     isAdmin = '',
 }) =>{ localStorage.setItem(
         'userinfo' , JSON.stringify({
-            _id,
+            id,
             name,
             email,
             password,

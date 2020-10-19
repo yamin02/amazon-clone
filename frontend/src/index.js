@@ -6,6 +6,7 @@ import Cartscreen from './screens/Cartscreen.js';
 import SigninScreen from './screens/SigninScreen.js';
 import Header from './components/Header.js';
 import RegisterScreen from './screens/RegisterScreen.js';
+import ProfileScreen from './screens/ProfileScreen.js';
 
 
 const routes ={
@@ -15,6 +16,7 @@ const routes ={
     "/cart" : Cartscreen ,
     '/signin' :SigninScreen,
     '/register' : RegisterScreen,
+    '/profile' : ProfileScreen,
 }
 
 const rounter = async () =>{
