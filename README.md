@@ -31,8 +31,11 @@ If you use .fetch() there is a two-step process when handing JSON data. The firs
 
 10. connected to mongodb in backend
 
-#this Commit :
 11. SIGNIN UI 
 12.  new pm pack : jsonwebtoken ( helps to generate a token ) , express-async-handler( handles all async function in express )
 12. SignIn feature 
 13. Make header Independent 
+
+#this Commit :
+14. "Loading..." overlay Feature is added when data loads in homescreen, signin , productScreen etc ALL the Async function. 
+15. "Invalid pass-email" message overlay added 

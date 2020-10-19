@@ -3,13 +3,16 @@ import { getCartItems, setCartitems } from '../localStorage.js';
 /* eslint-disable no-unused-vars */
 import {parserequestUrl, rerender} from '../utils.js';
 
-const addT0cart= (item,forceUpdate = false)=>{
-  let cartItems = getCartItems();
-  const existItems = cartItems.find((x)=>x.product === item.product );
+
+//cart action Functions
+const addT0cart= (item , forceUpdate = false)=>{
+  let  cartItems = getCartItems();
+  const existItems = cartItems.find((x)=> x.product === item.product );
+  // if selected product is already in cart no need to update cart
   if(existItems){
-    if(forceUpdate){
-    cartItems = cartItems.map ((x)=>
-      x.product === existItems.product ? item : x
+   if(forceUpdate){   // used when quantity changes   
+    cartItems = cartItems.map((x)=>
+    x.product === existItems.product ? item : x ,
     );
   }
   }else{
@@ -29,41 +32,42 @@ const removefromcart =(id) =>{
     rerender(Cartscreen);
   }
 }
+//cart action Functions 
 
- const Cartscreen = {
-  after_render:() =>{
-    console.log('yes');
-    const qtyselect = document.getElementsByClassName('qty-select');
+
+const Cartscreen = {
+  after_render:() => {
+    const qtyselect = document.getElementsByClassName('qty-select'); 
     Array.from(qtyselect).forEach((qt)=>{
       qt.addEventListener('change', (e) =>{
         const item = getCartItems().find((x) => x.product === qt.id);
-        addT0cart({...item, qty:Number(e.target.value) },true)
-      })
+        addT0cart({...item , qty:Number(e.target.value) }, true) ;
+      });  
     })
 
     const delbtn = document.getElementsByClassName('delete-button');
-    Array.from(delbtn).forEach((de) =>{
-      de.addEventListener('click',()=>{
+    Array.from(delbtn).forEach((de)=>{
+      de.addEventListener('click', ()=>{
         removefromcart(de.id);
-      })
+      });
     })
-  },
-  rend: async ()=>{
+  } ,
+
+  rend: async ()=> {
     const request = parserequestUrl();
-    if(request.id) {
+    if(request.id){
       const product = await getProduct(request.id);
       addT0cart({
-        product : product._id,
-        name:product.name ,
-        price : product.price,
-        qty:1,
-        image:product.image,
-        countInstock: product.countInstock ,
+        product : product._id ,
+        name:product.name ,  
+        price : product.price , 
+        qty:1 ,
+        image:product.image ,
+        countInstock: product.countInstock ,   
       });
     }
     const cartItems = getCartItems();
-    return  `
-    <div class="content cart">
+    return  `<div class="content cart">
     <div class="cart-list">
     <h1>${cartItems.length}</h1>
       <ul class="cart-list-container">
@@ -71,8 +75,9 @@ const removefromcart =(id) =>{
           <h3>Shopping Cart</h3>
           <div>Price</div>
         </li>
-        ${cartItems.length === 0? '<div>Cart is empty. <a href="/#/">Go Shopping</a>':
-        cartItems.map((item) => ` 
+        ${cartItems.length === 0 
+        ?'<div>Cart is empty. <a href="/#/">Go Shopping</a>'
+        :cartItems.map((item) => ` 
           <li>
             <div class="cart-image">
               <img src='${item.image}' alt="${item.name}" />
@@ -117,8 +122,7 @@ const removefromcart =(id) =>{
           Proceed to Checkout
         </button>
     </div>
-  </div>
-  `
+  </div>`
   }
 } 
 
