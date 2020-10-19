@@ -1,9 +1,14 @@
 import { update } from "../api";
-import { getUserinfo, setUserInfo } from "../localStorage";
+import { clearUser, getUserinfo, setUserInfo } from "../localStorage";
 import { hideloading, showloading, showMessage } from "../utils";
 
 const ProfileScreen ={
     after_render: () =>{
+        document.getElementById('signout-button')
+        .addEventListener("click",()=>{
+            clearUser();
+            document.location.hash = '/';
+        })
         document
         .getElementById('profile-form')
         .addEventListener('submit', async (e)=>{
@@ -48,6 +53,9 @@ const ProfileScreen ={
                     </li>
                     <li>
                         <button type='submit' class='primary'>Update</button>
+                    </li>
+                    <li>
+                        <button type='button' id='signout-button' >Sign Out</button>
                     </li>
                 </ul>
             </form>

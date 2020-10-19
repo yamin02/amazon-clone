@@ -38,5 +38,8 @@ If you use .fetch() there is a two-step process when handing JSON data. The firs
 14. "Loading..." overlay Feature is added when data loads in homescreen, signin , productScreen etc ALL the Async function. 
 15. "Invalid pass-email" message overlay added 
 
-#this Commit :
 16. Add " create Accout section " and makke a new user 
+
+#this Commit :
+17. Added a "Change Profile: password , name, email" 
+18. Added Signout button

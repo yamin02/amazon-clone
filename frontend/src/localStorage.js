@@ -16,7 +16,8 @@ export const setUserInfo = ({
     password='',
     token ='',
     isAdmin = '',
-}) =>{ localStorage.setItem(
+}) =>{ 
+    localStorage.setItem(
         'userinfo' , JSON.stringify({
             id,
             name,
@@ -32,4 +33,8 @@ export const getUserinfo = () =>{
     return localStorage.getItem('userinfo') 
     ? JSON.parse(localStorage.getItem('userinfo'))
     : { name: '' , email : '' , password: ''};
+}
+
+export const clearUser= () => {
+    localStorage.removeItem('userinfo');
 }
