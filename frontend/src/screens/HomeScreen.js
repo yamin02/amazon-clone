@@ -2,15 +2,18 @@
 import axios from 'axios' ;
 import Rating from '../components/ratings';
 import { apiUrl } from '../config';
+import { hideloading, showloading } from '../utils';
 
 const HomeScreen = {
   rend: async () => {
+    showloading();
     //const { products } = data;
-    const option = {
+    const response = await axios({
+      url : `${apiUrl}/api/products`,
       headers: {
         "content-Type" : "application/json" ,},
-    }
-    const response = await axios(`${apiUrl}/api/products`, option)
+    });
+    hideloading();
     if(!response || response.statusText !== 'OK')
     {console.log('eror in fetch data from server');}
     const products = await response.data ;

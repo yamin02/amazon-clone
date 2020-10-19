@@ -26,6 +26,17 @@ If you use .fetch() there is a two-step process when handing JSON data. The firs
 <!--Linting is the automated checking of your source code for programmatic and stylistic errors. This is done by using a lint tool (otherwise known as linter). A lint tool is a basic static code analyzer. -->
 
 8. Star ratings added see the ratings.js
-
-#this Component: 
+ 
 9. Product UI
+
+10. connected to mongodb in backend
+
+11. SIGNIN UI 
+12.  new pm pack : jsonwebtoken ( helps to generate a token ) , express-async-handler( handles all async function in express )
+12. SignIn feature 
+13. Make header Independent 
+14. "Loading..." overlay Feature is added when data loads in homescreen, signin , productScreen etc ALL the Async function. 
+15. "Invalid pass-email" message overlay added 
+
+#this Commit :
+16. Add " create Accout section " and makke a new user 
