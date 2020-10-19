@@ -41,5 +41,29 @@ userRouter.post('/signin', expressasynchandler(async(req,res)=>{
    }
 }));
 
+userRouter.post('/register', expressasynchandler(async(req,res)=>{
+    const user = new User({
+       name: req.body.name ,
+        email : req.body.email,
+        password : req.body.password,
+
+    })
+    const createdUser = await user.save()
+    if(!createdUser){
+       res.status(404).send({
+           message: 'Invalid User Data',
+       })
+     }else {
+       res.send({
+           id: createdUser._id ,
+           name: createdUser.name ,
+           email : createdUser.email,
+           password: createdUser.password,
+           isAdmin : createdUser.isAdmin ,
+           token : generateToken(createdUser),
+       })
+   }
+}));
+
 
 export default userRouter ; 
