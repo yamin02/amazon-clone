@@ -2,6 +2,7 @@ Amazon site clone
 
 Youtube link : https://www.youtube.com/watch?v=U55XCQNCdcE&list=RDCMUC2xRE4hUCQ3xO3ymEtMh1Hw&index=2
 
+#Life
 
 Until now :
 
@@ -44,5 +45,4 @@ If you use .fetch() there is a two-step process when handing JSON data. The firs
 18. Added Signout button
 19. Added Shipping screen 
 
-#this Commit :
-20. Added PlaceORder Screen
+#this Commit : 20. Added PlaceOrder Screen
