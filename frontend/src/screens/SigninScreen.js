@@ -1,8 +1,8 @@
 import { signin } from "../api";
 import { getUserinfo, setUserInfo } from "../localStorage";
-import { hideloading, showloading, showMessage } from "../utils";
+import { hideloading, redirectUser, showloading, showMessage } from "../utils";
 
-const SigninScreen ={
+const SigninScreen = {
     after_render: () =>{
         document
         .getElementById('signin-form')
@@ -18,13 +18,14 @@ const SigninScreen ={
                 showMessage(data.error);
             } else {
                 setUserInfo(data);
-                document.location.hash = '/' ;
+                redirectUser();
+                
             }
         })
     } ,
     rend:()=>{
         if(getUserinfo().name){
-            document.location.hash = '/' ;
+            redirectUser();
         }
         return `<div class= 'form-container'>
             <form id='signin-form'>

@@ -14,7 +14,7 @@ const Header = {
     ? `<a href="/#/profile">${name}</a>`
     : '<a href="/#/signin">Sign-In</a>'
     }
-        <a href="/#/signin">Cart</a>
+        <a href="/#/cart">Cart</a>
     </div>`
     }
 }

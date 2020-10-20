@@ -30,6 +30,7 @@ userRouter.post('/signin', expressasynchandler(async(req,res)=>{
            message: 'Invalid email or password',
        })
    }else {
+       console.log(siginUser._id);
        res.send({
            id: siginUser._id ,
            name: siginUser.name ,
@@ -61,6 +62,30 @@ userRouter.post('/register', expressasynchandler(async(req,res)=>{
            password: createdUser.password,
            isAdmin : createdUser.isAdmin ,
            token : generateToken(createdUser),
+       })
+   }
+}));
+
+userRouter.put('/:id', expressasynchandler(async(req,res)=>{
+    //finds the user from db 
+    const user = await User.findById(req.params.id);
+    console.log(user);
+    if(!user){
+        res.status(404).send({
+           message: 'Invalid User Data',
+       })
+    } else {
+        user.name = req.body.name || user.name ; //if user.name not changed while other things are
+        user.email = req.body.email || user.email;
+        user.password = req.body.password || user.password ;
+        const UpdatedUser = await user.save();
+       res.send({
+           id: UpdatedUser._id ,
+           name: UpdatedUser.name ,
+           email : UpdatedUser.email,
+           password: UpdatedUser.password,
+           isAdmin : UpdatedUser.isAdmin,
+           token : generateToken(UpdatedUser),
        })
    }
 }));
