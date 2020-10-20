@@ -40,6 +40,8 @@ If you use .fetch() there is a two-step process when handing JSON data. The firs
 
 16. Add " create Accout section " and makke a new user 
 
-#this Commit :
 17. Added a "Change Profile: password , name, email" 
 18. Added Signout button
+
+#this Commit :
+19. Added Shipping screen 

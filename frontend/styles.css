@@ -282,14 +282,16 @@
   /* Checkout */
   .checkout-steps {
     display: flex;
-    justify-content: space-between;
-    width: 40rem;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: center;
+    width: 40rem; 
     margin: 1rem auto;
   }
   .checkout-steps > div {
-    border-top: 0.3rem #c0c0c0 solid;
+    border-top: 0.4rem #c0c0c0 solid;
     color: #c0c0c0;
-    flex: 1 1;
+     flex: 1 1 ;
     padding-top: 1rem;
   }
   .checkout-steps > div.active {

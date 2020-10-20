@@ -1,3 +1,5 @@
+
+
 export const parserequestUrl = () => {
     const url = document.location.hash.toLowerCase();
     const request = url.split('/');
@@ -8,10 +10,12 @@ export const parserequestUrl = () => {
     }
 }
 
-export const rerender= async (comp) => {
+
+export const rerender = async (comp) => {
     document.getElementById("main-container").innerHTML = await comp.rend() ;
     await comp.after_render();
 }
+
 
 export const showloading = () =>{
     document.getElementById('loading-overlay').classList.add('active');
@@ -36,4 +40,12 @@ export const showMessage =(msg, callback) =>{
             callback();
         }
     })
+}
+
+export const redirectUser = () =>{
+    if(getCartItems().length !== 0){
+        document.location.hash = '/shipping';
+    }else{
+        document.location.hash = '/' ;
+    }
 }

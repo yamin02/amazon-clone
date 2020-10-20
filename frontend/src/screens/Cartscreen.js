@@ -1,10 +1,11 @@
 import { getProduct } from '../api.js';
 import { getCartItems, setCartitems } from '../localStorage.js';
 /* eslint-disable no-unused-vars */
-import {parserequestUrl, rerender} from '../utils.js';
+import { parserequestUrl,  rerender} from '../utils.js';
 
 
-//cart action Functions
+
+//cart action Functions 
 const addT0cart= (item , forceUpdate = false)=>{
   let  cartItems = getCartItems();
   const existItems = cartItems.find((x)=> x.product === item.product );
@@ -24,7 +25,7 @@ const addT0cart= (item , forceUpdate = false)=>{
   setCartitems(cartItems);
 };
 
-const removefromcart =(id) =>{
+export const removefromcart =(id) =>{
   setCartitems(getCartItems().filter((x)=> x.product !== id));
   if(id === parserequestUrl().id){
     document.location.hash ='/cart';
@@ -32,7 +33,6 @@ const removefromcart =(id) =>{
     rerender(Cartscreen);
   }
 }
-//cart action Functions 
 
 
 const Cartscreen = {
@@ -50,6 +50,10 @@ const Cartscreen = {
       de.addEventListener('click', ()=>{
         removefromcart(de.id);
       });
+    })
+
+    document.getElementById('checkout-button').addEventListener('click',() =>{
+      document.location.hash = '/shipping' ;
     })
   } ,
 
