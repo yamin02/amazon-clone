@@ -2,9 +2,8 @@ Amazon site clone
 
 Youtube link : https://www.youtube.com/watch?v=U55XCQNCdcE&list=RDCMUC2xRE4hUCQ3xO3ymEtMh1Hw&index=2
 
-#Life
 
-Until now :
+# Until now :
 
 1. The products json in data.js is used in  index.js via  the HomeScreen.js
 
@@ -45,4 +44,4 @@ If you use .fetch() there is a two-step process when handing JSON data. The firs
 18. Added Signout button
 19. Added Shipping screen 
 
-#this Commit : 20. Added PlaceOrder Screen
+# This Commit : 20. Added PlaceOrder Screen
