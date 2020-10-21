@@ -5,6 +5,7 @@ import mongoose from 'mongoose' ;
 import config from './config';
 import userRouter from './routers/userRouter';
 import bodyParser from 'body-parser';
+import orderRouter from './routers/orderRouter';
 
 mongoose.connect(config.MONGODB_URL,{
     useNewUrlParser: true ,
@@ -47,6 +48,8 @@ app.use((err,req,res,next)=>{
     res.status(status).send({message: err.message});
 });
 
+//for placing order
+app.use('/api/orders' , orderRouter);
 
 const port = process.env.PORT || 3000 ;
 app.listen(port, () =>{
