@@ -1,5 +1,7 @@
 import CheckoutSteps from '../../../backend/routers/CheckoutSteps';
-import {getCartItems, getPayment, getShipping} from '../localStorage' ;
+import { createOrder } from '../api';
+import {cleancart, cleanCart, getCartItems, getPayment, getShipping} from '../localStorage' ;
+import { hideloading, showloading, showMessage } from '../utils';
 
 const convertCartToOrder = () =>{
     const orderItems = getCartItems() ;
@@ -31,12 +33,27 @@ const convertCartToOrder = () =>{
 };
 
 const PlaceOrderScreen = {
-    after_render :() =>{
-        return true;
+    after_render :async () => {
+      document.getElementById('placeorder-button')
+        .addEventListener('click', async () => {
+          const order = convertCartToOrder();
+          console.log(order);
+          showloading();
+          const data = await createOrder(order);
+          console.log(data);
+          hideloading();
+          if (data.error) {
+            showMessage(data.error);
+          } else {
+            cleancart();
+            showMessage(data.message);
+            document.location.hash = `/order/${data.order._id}`;
+          }
+        });
     },
     rend : () => {
         const {
-            orderItems ,
+        orderItems ,
         shipping ,
         payment,
         itemsPrice,
@@ -94,9 +111,7 @@ const PlaceOrderScreen = {
                    <li><div>Tax</div><div>$${taxPrice}</div></li>
                    <li class="total"><div>Order Total</div><div>$${totalPrice}</div></li> 
                    <li>
-                   <button class="primary fw">
-                   Place Order
-                   </button>
+                   <button id = "placeorder-button" class="primary fw">Place Order</button>
           </div>
         </div>
       </div>`;

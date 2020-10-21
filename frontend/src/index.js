@@ -8,8 +8,8 @@ import Header from './components/Header.js';
 import RegisterScreen from './screens/RegisterScreen.js';
 import ProfileScreen from './screens/ProfileScreen.js';
 import ShippingScreen from './screens/ShippingScreen.js';
-import PaymentScreen from './screens/PaymentScreen.js';
 import PlaceOrderScreen from './screens/PlaceOrderScreen.js';
+import PaymentScreen from './screens/PaymentScreen.js';
 
 
 const routes ={
@@ -22,7 +22,7 @@ const routes ={
     '/profile' : ProfileScreen,
     '/shipping' : ShippingScreen,
     '/payment' : PaymentScreen,
-    '/placeorder' : PlaceOrderScreen,
+    '/placeorder' :PlaceOrderScreen,
 }
 
 const rounter = async () =>{
@@ -44,7 +44,7 @@ const rounter = async () =>{
     //Main Content 
     const main = document.getElementById('main-container');
     main.innerHTML = await screen.rend() ;
-    if(screen.after_render) await screen.after_render();
+    await screen.after_render();
     hideloading();
 };
 
