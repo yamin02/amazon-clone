@@ -45,7 +45,7 @@ const PlaceOrderScreen = {
           } else {
             cleanCart();
             showMessage(data.message);
-            document.location.hash = `/order/${data.order._id}`;
+            document.location.hash = `/orders/${data.order._id}`;
           }
         });
     },

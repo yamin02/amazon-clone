@@ -3,8 +3,8 @@ export default
     products:[
         {
             _id:'111111111111111111111111',
-            name : 'full zip running',
-            category:'shirts' ,
+            name : 'google-five',
+            category:'shirts',
             image:'/images/product-1.jpg',
             price: 60,
             brand : 'nike',

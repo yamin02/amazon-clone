@@ -6,8 +6,10 @@ import config from './config';
 import userRouter from './routers/userRouter';
 import bodyParser from 'body-parser';
 import orderRouter from './routers/orderRouter';
+import successRouter from './routers/successRouter';
 
-mongoose.connect(config.MONGODB_URL,{
+
+mongoose.connect(config.MONGODB_URL , {
     useNewUrlParser: true ,
     useUnifiedTopology: true ,
     useCreateIndex : true 
@@ -38,7 +40,7 @@ app.get('/api/products/:id', (req, res)=> {
     }
 });
 
-// For SignIN and Create Account
+// For SignIN , Create Account and 
 app.use('/api/users' , userRouter);
 
 //all errors in express and express-async-handler can be handled with this:
@@ -51,7 +53,15 @@ app.use((err,req,res,next)=>{
 //for placing order
 app.use('/api/orders' , orderRouter);
 
+//paypal Payment
+app.get('/api/paypal/clientId', (req, res) => {
+    res.send({ clientId: config.PAYPAL_CLIENT_ID });
+  });
+
+app.use('/success', successRouter);
+
 const port = process.env.PORT || 3000 ;
 app.listen(port, () =>{
     console.log("We are listing to the PORT : 3000")
 })
+

@@ -43,5 +43,6 @@ If you use .fetch() there is a two-step process when handing JSON data. The firs
 17. Added a "Change Profile: password , name, email" 
 18. Added Signout button
 19. Added Shipping screen 
+20. Added PlaceOrder Screen
 
-# This Commit : 20. Added PlaceOrder Screen
+# This Commit : 

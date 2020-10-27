@@ -1,4 +1,4 @@
-
+import { getCartItems } from "./localStorage";
 
 export const parserequestUrl = () => {
     const url = document.location.hash.toLowerCase();

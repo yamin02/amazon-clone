@@ -17,7 +17,7 @@ const SigninScreen = {
             if(data.error){
                 showMessage(data.error);
             } else {
-                setUserInfo(data);
+                setUserInfo(data);        
                 redirectUser();
                 
             }
