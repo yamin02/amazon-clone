@@ -28,24 +28,29 @@ const orderSchema = new mongoose.Schema(
     },
     payment: {
       paymentMethod: String,
-      paymentResult: {
+      paymentResult: 
+      {
         orderID: String,
         payerID: String,
         paymentID: String,
       },
     },
     itemsPrice: Number,
-    taxPrice: Number,
-    shippingPrice: Number,
-    totalPrice: Number,
     isPaid: { type: Boolean, required: true, default: false },
     paidAt: Date,
-    isDelivered: { type: Boolean, required: true, default: false },
+    isDelivered: { 
+      type: Boolean, 
+      required: true, 
+      default: false 
+    },
     deliveredAt: Date,
   },
+
   {
     timestamps: true,
-  }
+  },
+  
 );
+
 const Order = mongoose.model('Order', orderSchema);
 export default Order;
