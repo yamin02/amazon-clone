@@ -3,6 +3,7 @@ import { createOrder } from '../api';
 import {cleanCart, getCartItems, getPayment, getShipping} from '../localStorage' ;
 import { hideloading, showloading, showMessage } from '../utils';
 
+
 const convertCartToOrder = () =>{
     const orderItems = getCartItems() ;
     if(orderItems.length ===0 ){
@@ -32,6 +33,7 @@ const convertCartToOrder = () =>{
     };
 };
 
+
 const PlaceOrderScreen = {
     after_render :async () => {
       document.getElementById('placeorder-button')
@@ -51,7 +53,7 @@ const PlaceOrderScreen = {
     },
     rend : () => {
         const {
-            orderItems ,
+        orderItems ,
         shipping ,
         payment,
         itemsPrice,

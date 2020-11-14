@@ -11,7 +11,7 @@ expressAsyncHandler(async(req,res)=>{
     const order = await Order.findById(req.params.id);
     if(order){
         res.send(order);
-        console.log(order)
+        //console.log(order)
     }else {
         res.status(201).send({
             message: "Order not found", 

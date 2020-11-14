@@ -178,7 +178,6 @@ export const getPaypalClientId = async () => {
 
   export const getCode = async (orderId) => {
     try {
-      //const { token } = getUserInfo();
       const response = await axios({
         url: `${apiUrl}/success/${orderId}`,
         headers: {
@@ -194,3 +193,20 @@ export const getPaypalClientId = async () => {
       return { error: err.response ? err.response.data.message : err.message };
     }
   };
+
+  export const dashpost = async (userId) =>{
+    const response = await axios ({
+      url : `${apiUrl}/dashboard`,
+      method : 'POST',
+      headers :{
+        'Content-Type' : 'application/json',
+      },
+      data: {
+        userId : userId },
+    });
+    if(response.statusText !== 'OK'){
+      throw new Error(response.data.message);
+    }
+    //console.log(response.data.allcodes)
+    return response.data.allcodes ;
+  }

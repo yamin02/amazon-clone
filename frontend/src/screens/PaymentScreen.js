@@ -2,7 +2,6 @@ import CheckoutSteps from "../../../backend/routers/CheckoutSteps";
 import { getPayment,getUserinfo, setPayment } from "../localStorage";
 
 
-
 const PaymentScreen ={
     after_render: () =>{
         document

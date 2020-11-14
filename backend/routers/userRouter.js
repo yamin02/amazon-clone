@@ -30,7 +30,6 @@ userRouter.post('/signin', expressasynchandler(async(req,res)=>{
            message: 'Invalid email or password',
        })
    }else {
-       console.log(siginUser._id);
        res.send({
            id: siginUser._id ,
            name: siginUser.name ,

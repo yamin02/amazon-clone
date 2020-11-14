@@ -24,15 +24,18 @@ const playcards = (orderName,orderId,customer,expireDate,res)=>{
     db.collection(orderName).limit(1).onSnapshot(function(snap) {
     snap.forEach(doc=>{
                 var data0 = doc.data();
-                console.log(doc.id);
-                console.log(data0.code);
+                //console.log(doc.id);
+                //console.log(data0.code);
+                
                 customer.ActiveOrder.push(
                 {
                     _id : orderId ,
                     firebaseID : `${doc.id}` ,
-                    orderName : `${orderName}`,
+                    orderName : orderName ,
                     expiryDate : expireDate ,
                 }),
+                customer.save();
+                //console.log(customer)
                 res.send({
                     'orderName' : orderName,
                     'code': data0.code,
@@ -46,8 +49,8 @@ const netflix = (orderName,orderId,customer,expireDate,res)=>{
     db.collection(orderName).limit(1).onSnapshot(function(snap) {
         snap.forEach(doc=>{
             var data0 = doc.data();
-            console.log(doc.id);
-            console.log(data0.email);
+            //console.log(doc.id);
+            //console.log(data0.email);
             customer.ActiveOrder.push(
                 {
                     _id : orderId ,
@@ -56,7 +59,7 @@ const netflix = (orderName,orderId,customer,expireDate,res)=>{
                     expiryDate : expireDate ,
                 }),
             customer.save();
-            console.log(customer);
+           // console.log(customer);
             res.send({
                 'orderName' : orderName,
                 'email': data0.email,
@@ -64,19 +67,19 @@ const netflix = (orderName,orderId,customer,expireDate,res)=>{
                 'profileName' : data0.profileName,
                 'profilePin': data0.profilePin,
             });
-        }) });
+        })});
 }
 
 
 successRouter.get('/:id', expressAsyncHandler(async(req,res)=>{
     const order = await Order.findById(req.params.id);
     const orderId = req.params.id ;
-    const orderName = order.orderItems[0].name;
+    const orderName = order.orderItems[0].name
     const userId = order.user ;
     const customer =  await User.findById(userId);
     const expiryDate = new Date();
-    d.setDate(d.getDate() + order.validity);
-
+    expiryDate.setDate(expiryDate.getDate() + order.orderItems[0].validity);
+    console.log(expiryDate);
     if(!order.isDelivered)
     {   
         order.isDelivered = true ; 

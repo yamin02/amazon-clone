@@ -12,7 +12,7 @@ const SuccessScreen = {
       const gotCode = await getCode(request.id) ; 
       console.log(gotCode.orderName);
   //add the Netflixcard to new order Mongodb "User schema" 
-  // with TTL (time-to-Live) for expiration after sometime
+
     return `<h1>Here are your codes</h1>
     ${gotCode.orderName==='Netflix-sharing' 
     ? `<div><h1>This is Netflix ${gotCode.orderName}</h1>
