@@ -9,6 +9,7 @@ import orderRouter from './routers/orderRouter';
 import successRouter from './routers/successRouter';
 import dashRouter from './routers/dashRouter';
 import SSLCommerz from 'sslcommerz-nodejs';
+import path from 'path';
 
 mongoose.connect(config.MONGODB_URL , {
     useNewUrlParser: true ,
@@ -61,10 +62,21 @@ app.get('/api/paypal/clientId', (req, res) => {
 app.use('/success', successRouter);
 app.use('/dashboard' , dashRouter );
 
+//app.use(express.static(path.join(__dirname, '/../frontend/images')));
+app.use(express.static(path.join(__dirname, '/../frontend')));
+app.use('*' , (req,res)=>{
+    res.sendFile(path.join(__dirname, '/../frontend/index.html'));
+});
+
+
 //const port = 3000 ;
 app.listen(config.PORT, () =>{
     console.log("We are listing to the PORT 3000");
 })
+
+
+
+
 
 
 

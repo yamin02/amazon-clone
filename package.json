@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node backend/server.js",
-    "heroku-prebuild" : "cd frontend && npm install --dev",
-    "heroku-postbuild" : "npm run build && cd frontend && npm install && npm run build"
+    "build": "rm -rf dest && babel backend -d dist",
+    "serve": "node dist/server.js",
+    "heroku-prebuild": "cd frontend && npm install --dev",
+    "heroku-postbuild": "npm run build && cd frontend && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.9",
     "nodemon": "^2.0.5",
+    "path": "^0.12.7",
     "sslcommerz-nodejs": "^1.0.8"
   },
   "devDependencies": {
@@ -43,8 +46,8 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.1.4"
   },
-  "engines":{
+  "engines": {
     "node": "12.16.3",
-    "npm" : "6.14.4"
+    "npm": "6.14.4"
   }
 }
