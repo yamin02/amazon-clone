@@ -1,6 +1,5 @@
 // used dotenv for config.js
-
-import dotenv from 'dotenv' ;
+import dotenv from 'dotenv';
 
 dotenv.config();
 //access the env file
