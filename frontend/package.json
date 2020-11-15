@@ -1,11 +1,12 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is an amazon clone behaviour",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --watch-content-base --open",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode=production --output ./main.js",
+    "test":  "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",

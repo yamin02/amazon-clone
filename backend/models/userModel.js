@@ -19,7 +19,14 @@ const userSchema = new mongoose.Schema({
         type: Boolean ,
         required: true ,
         default : false,
-    } 
+    } ,
+    ActiveOrder: [
+        {
+          firebaseID : String ,
+          orderName : String,
+          expiryDate : Date , 
+        }
+    ],
 });
 
 const User = mongoose.model('User', userSchema);

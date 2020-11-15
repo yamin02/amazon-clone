@@ -30,7 +30,6 @@ userRouter.post('/signin', expressasynchandler(async(req,res)=>{
            message: 'Invalid email or password',
        })
    }else {
-       console.log(siginUser._id);
        res.send({
            id: siginUser._id ,
            name: siginUser.name ,
@@ -42,6 +41,7 @@ userRouter.post('/signin', expressasynchandler(async(req,res)=>{
    }
 }));
 
+//for new account register
 userRouter.post('/register', expressasynchandler(async(req,res)=>{
     const user = new User({
        name: req.body.name ,
@@ -66,10 +66,11 @@ userRouter.post('/register', expressasynchandler(async(req,res)=>{
    }
 }));
 
+
+//when update button in customer dashboard is pressed  for changing UserProfile
 userRouter.put('/:id', expressasynchandler(async(req,res)=>{
     //finds the user from db 
     const user = await User.findById(req.params.id);
-    console.log(user);
     if(!user){
         res.status(404).send({
            message: 'Invalid User Data',

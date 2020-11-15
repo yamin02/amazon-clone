@@ -119,4 +119,94 @@ export const createOrder = async (order) => {
     } catch (err) {
       return { error: err.response ? err.response.data.message : err.message };
     }
+};
+
+export const getOrder = async (id) =>{
+    try{
+    const {token} = getUserinfo() ;
+    const response = await axios({
+        url : `${apiUrl}/api/orders/${id}`,
+        headers :{
+            'Content-Type' : 'application/json' ,
+            Authorization : `Bearer ${token}`,
+        },
+    })
+    if(response.statusText !== 'OK'){
+        throw new Error(response.data.message);
+    }
+    console.log(response.data);
+    return response.data ;
+    }catch(err) {
+         return { error: err.response ? err.response.data.message : err.message };
+    }
+}
+
+export const getPaypalClientId = async () => {
+    const response = await axios({
+      url: `${apiUrl}/api/paypal/clientId`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (response.statusText !== 'OK') {
+      throw new Error(response.data.message);
+    }
+    return response.data.clientId;
   };
+  
+  export const payOrder = async (orderId, paymentResult) => {
+    try {
+      const { token } = getUserInfo();
+      const response = await axios({
+        url: `${apiUrl}/api/orders/${orderId}/pay`,
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        data: paymentResult,
+      });
+      if (response.statusText !== 'OK') {
+        throw new Error(response.data.message);
+      }
+      return response.data;
+    } catch (err) {
+      return { error: err.response ? err.response.data.message : err.message };
+    }
+  };
+
+
+  export const getCode = async (orderId) => {
+    try {
+      const response = await axios({
+        url: `${apiUrl}/success/${orderId}`,
+        headers: {
+          'Content-Type': 'application/json',
+          //Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.statusText !== 'OK') {
+        throw new Error(response.data.message);
+      }
+      return response.data;
+    } catch (err) {
+      return { error: err.response ? err.response.data.message : err.message };
+    }
+  };
+
+  export const dashpost = async (userId) =>{
+    const response = await axios ({
+      url : `${apiUrl}/dashboard`,
+      method : 'POST',
+      headers :{
+        'Content-Type' : 'application/json',
+      },
+      data: {
+        userId : userId },
+    });
+    if(response.statusText !== 'OK'){
+      throw new Error(response.data.message);
+    }
+    //console.log(response.data.allcodes)
+    return response.data.allcodes ;
+  }

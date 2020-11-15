@@ -108,6 +108,8 @@
     justify-content: center;
     align-items: center;
     color: #ffffff;
+    height: fit-content;
+    padding: 15px;
   }
   /* Products */
   .products {
@@ -457,4 +459,15 @@
   }
   .charts > div {
     flex: 1;
+  }
+
+  #dashitem{
+    padding : 3px;
+    border-top:2px solid #f08000;
+    padding-left: 50px ;
+  }
+
+
+  main {
+    border: 5px solid  black;
   }

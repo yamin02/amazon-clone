@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node backend/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rm -rf dest && babel backend -d dist",
+    "serve": "node dist/server.js" ,
+    "heroku-prebuild": "cd frontend && npm install --dev",
+    "heroku-postbuild": "npm run build && cd frontend && npm install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -23,14 +26,18 @@
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.5",
     "body-parser": "^1.19.0",
+    "circular-json": "^0.5.9",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "eslint-config-airbnb": "^18.2.0",
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
+    "firebase-admin": "^9.3.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.9",
-    "nodemon": "^2.0.5"
+    "nodemon": "^2.0.5",
+    "path": "^0.12.7",
+    "sslcommerz-nodejs": "^1.0.8"
   },
   "devDependencies": {
     "eslint": "^7.10.0",
@@ -38,5 +45,9 @@
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.1.4"
+  },
+  "engines": {
+    "node": "12.16.3",
+    "npm": "6.14.4"
   }
 }

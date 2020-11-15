@@ -7,14 +7,14 @@ import { parserequestUrl,  rerender} from '../utils.js';
 
 //cart action Functions 
 const addT0cart= (item , forceUpdate = false)=>{
+  //forceUpdate used for  changing quantity
   let  cartItems = getCartItems();
   const existItems = cartItems.find((x)=> x.product === item.product );
   // if selected product is already in cart no need to update cart
   if(existItems){
    if(forceUpdate){   // used when quantity changes   
     cartItems = cartItems.map((x)=>
-    x.product === existItems.product ? item : x ,
-    );
+    x.product === existItems.product ? item : x ,);
   }
   }else{
     cartItems = [...cartItems , item];  
@@ -22,7 +22,7 @@ const addT0cart= (item , forceUpdate = false)=>{
   if(forceUpdate){
     rerender(Cartscreen);
   }
-  setCartitems(cartItems);
+    setCartitems(cartItems);
 };
 
 export const removefromcart =(id) =>{
@@ -63,6 +63,7 @@ const Cartscreen = {
       const product = await getProduct(request.id);
       addT0cart({
         product : product._id ,
+        validity : product.validity ,
         name:product.name ,  
         price : product.price , 
         qty:1 ,

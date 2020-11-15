@@ -6,8 +6,12 @@ import config from './config';
 import userRouter from './routers/userRouter';
 import bodyParser from 'body-parser';
 import orderRouter from './routers/orderRouter';
+import successRouter from './routers/successRouter';
+import dashRouter from './routers/dashRouter';
+import SSLCommerz from 'sslcommerz-nodejs';
+import path from 'path';
 
-mongoose.connect(config.MONGODB_URL,{
+mongoose.connect(config.MONGODB_URL , {
     useNewUrlParser: true ,
     useUnifiedTopology: true ,
     useCreateIndex : true 
@@ -25,20 +29,19 @@ app.use(bodyParser.json());
 
 app.get('/api/products' ,(req,res) =>{
     res.send(data.products);
-    //console.log(data.products);
 });
+
 app.get('/api/products/:id', (req, res)=> {
     const product = data.products.find((x)=>x._id === req.params.id);
     if(product){
         res.send(product); 
-        console.log(product);
     }else {
         res.status(404).send(
             {message:'product not found'})
     }
 });
 
-// For SignIN and Create Account
+// For SignIN , Create Account and 
 app.use('/api/users' , userRouter);
 
 //all errors in express and express-async-handler can be handled with this:
@@ -51,7 +54,70 @@ app.use((err,req,res,next)=>{
 //for placing order
 app.use('/api/orders' , orderRouter);
 
-const port = process.env.PORT || 3000 ;
-app.listen(port, () =>{
-    console.log("We are listing to the PORT : 3000")
+//paypal Payment
+app.get('/api/paypal/clientId', (req, res) => {
+    res.send({ clientId: config.PAYPAL_CLIENT_ID });
+  });
+
+app.use('/success', successRouter);
+app.use('/dashboard' , dashRouter );
+
+//app.use(express.static(path.join(__dirname, '/../frontend/images')));
+app.use(express.static(path.join(__dirname, '/../frontend')));
+app.use('*' , (req,res)=>{
+    res.sendFile(path.join(__dirname, '/../frontend/index.html'));
+});
+
+
+//const port = 3000 ;
+app.listen(config.PORT, () =>{
+    console.log(`We are listing to the PORT ${config.PORT}`);
+})
+
+
+const sslcommerz = async () =>{
+    let settings = {
+        isSandboxMode: true, //false if live version
+        store_id: "yamxt5f5374c66828d",
+        store_passwd: "yamxt5f5374c66828d@ssl"
+    }
+     
+    let sslcommerz = new SSLCommerz(settings);
+    let post_body = {};
+    post_body['total_amount'] = 100.26;
+    post_body['currency'] = "BDT";
+    post_body['tran_id'] = "12345";
+    post_body['success_url'] = "your success url";
+    post_body['fail_url'] = "your fail url";
+    post_body['cancel_url'] = "your cancel url";
+    post_body['emi_option'] = 0;
+    post_body['cus_name'] = "test";
+    post_body['cus_email'] = "test@test.com";
+    post_body['cus_phone'] = "01700000000";
+    post_body['cus_add1'] = "customer address";
+    post_body['cus_city'] = "Dhaka";
+    post_body['cus_country'] = "Bangladesh";
+    post_body['shipping_method'] = "NO";
+    post_body['multi_card_name'] = ""
+    post_body['num_of_item'] = 1;
+    post_body['product_name'] = "Test";
+    post_body['product_category'] = "Test Category";
+    post_body['product_profile'] = "general";
+    try {
+        const response = await sslcommerz.init_transaction(post_body);
+        return response;
+    }catch(error){
+        console.log(error);
+    }  
+  }
+
+
+app.post('/paynow/:id1',async (req,res)=>{
+    console.log(req.params.id1);
+    const payment = await sslcommerz() ;
+    res.send ({
+        status : 'success' ,
+        data : payment.GatewayPageURL,
+        logo : payment.storeLogo,
+    })
 })

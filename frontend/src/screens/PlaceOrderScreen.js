@@ -1,7 +1,8 @@
 import CheckoutSteps from '../../../backend/routers/CheckoutSteps';
 import { createOrder } from '../api';
-import {cleancart, cleanCart, getCartItems, getPayment, getShipping} from '../localStorage' ;
+import {cleanCart, getCartItems, getPayment, getShipping} from '../localStorage' ;
 import { hideloading, showloading, showMessage } from '../utils';
+
 
 const convertCartToOrder = () =>{
     const orderItems = getCartItems() ;
@@ -32,22 +33,21 @@ const convertCartToOrder = () =>{
     };
 };
 
+
 const PlaceOrderScreen = {
     after_render :async () => {
       document.getElementById('placeorder-button')
         .addEventListener('click', async () => {
           const order = convertCartToOrder();
-          console.log(order);
           showloading();
           const data = await createOrder(order);
-          console.log(data);
           hideloading();
           if (data.error) {
             showMessage(data.error);
           } else {
-            cleancart();
+            cleanCart();
             showMessage(data.message);
-            document.location.hash = `/order/${data.order._id}`;
+            document.location.hash = `/orders/${data.order._id}`;
           }
         });
     },

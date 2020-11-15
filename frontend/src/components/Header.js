@@ -5,13 +5,13 @@ const Header = {
     },
     rend : () =>{
         const {name} = getUserinfo();
-        console.log({name});
         return `<div class= 'brand'>
         <a href="/#/">js amazon</a>
     </div>
     <div>
     ${name 
-    ? `<a href="/#/profile">${name}</a>`
+    ? `<a href="/#/dashboard">DashBoard</a>
+    <a href="/#/profile">${name}</a>` 
     : '<a href="/#/signin">Sign-In</a>'
     }
         <a href="/#/cart">Cart</a>

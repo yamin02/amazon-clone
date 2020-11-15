@@ -10,6 +10,9 @@ import ProfileScreen from './screens/ProfileScreen.js';
 import ShippingScreen from './screens/ShippingScreen.js';
 import PlaceOrderScreen from './screens/PlaceOrderScreen.js';
 import PaymentScreen from './screens/PaymentScreen.js';
+import OrderScreen from './screens/OrderScreen.js';
+import SuccessScreen from './screens/Success.js';
+import DashboardScreen from './screens/Dashboard.js';
 
 
 const routes ={
@@ -23,6 +26,9 @@ const routes ={
     '/shipping' : ShippingScreen,
     '/payment' : PaymentScreen,
     '/placeorder' :PlaceOrderScreen,
+    '/orders/:id' : OrderScreen,
+    '/success/:id' : SuccessScreen,
+    '/dashboard' : DashboardScreen,
 }
 
 const rounter = async () =>{
@@ -44,7 +50,7 @@ const rounter = async () =>{
     //Main Content 
     const main = document.getElementById('main-container');
     main.innerHTML = await screen.rend() ;
-    await screen.after_render();
+    if(screen.after_render){await screen.after_render();}
     hideloading();
 };
 
