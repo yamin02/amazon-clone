@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon --exec babel-node backend/server.js",
     "build": "rm -rf dest && babel backend -d dist",
-    "serve": "node dist/server.js",
+    "serve": "node dist/server.js" ,
     "heroku-prebuild": "cd frontend && npm install --dev",
     "heroku-postbuild": "npm run build && cd frontend && npm install && npm run build"
   },

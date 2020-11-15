@@ -64,17 +64,15 @@ app.use('/dashboard' , dashRouter );
 
 //app.use(express.static(path.join(__dirname, '/../frontend/images')));
 app.use(express.static(path.join(__dirname, '/../frontend')));
-// app.use('*' , (req,res)=>{
-//     res.sendFile(path.join(__dirname, '/../frontend/index.html'));
-// });
+app.use('*' , (req,res)=>{
+    res.sendFile(path.join(__dirname, '/../frontend/index.html'));
+});
 
 
 //const port = 3000 ;
 app.listen(config.PORT, () =>{
     console.log(`We are listing to the PORT ${config.PORT}`);
 })
-
-
 
 
 const sslcommerz = async () =>{
