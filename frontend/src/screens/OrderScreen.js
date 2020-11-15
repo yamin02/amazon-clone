@@ -28,16 +28,16 @@ const OrderScreen = {
       isPaid,
       paidAt,
     } = await getOrder(request.id);
-    const floatercart = document.getElementById('floating-cart');
-    floatercart.innerHTML = `<button class="your-button-class" id="sslczPayBtn"token= "if you have any token validation"
-    order="If you already have the transaction generated for current order"
-    endpoint="${apiUrl}/paynow/123445"> Pay Now
-    </button>`
-    return `<div><h1>Kutta</h1></div>
+    // const floatercart = document.getElementById('floating-cart');
+    // floatercart.innerHTML = `<button class="your-button-class" id="sslczPayBtn"token= "if you have any token validation"
+    // order="If you already have the transaction generated for current order"
+    // endpoint="${apiUrl}/paynow/123445"> Pay Now
+    // </button>`
+    return `<div><h1>Order screen</h1></div>
     <button class="your-button-class" id="sslczPayBtn"
     token= "if you have any token validation"
     order="If you already have the transaction generated for current order"
-    endpoint="${apiUrl}/paynow/123445"> Pay Now
+    endpoint="${apiUrl}/paynow/${request.id}"> Pay Now
     </button>`
   },
 };
