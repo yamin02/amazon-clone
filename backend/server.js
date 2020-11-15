@@ -64,18 +64,15 @@ app.use('/dashboard' , dashRouter );
 
 //app.use(express.static(path.join(__dirname, '/../frontend/images')));
 app.use(express.static(path.join(__dirname, '/../frontend')));
-app.use('*' , (req,res)=>{
-    res.sendFile(path.join(__dirname, '/../frontend/index.html'));
-});
+// app.use('*' , (req,res)=>{
+//     res.sendFile(path.join(__dirname, '/../frontend/index.html'));
+// });
 
 
 //const port = 3000 ;
 app.listen(config.PORT, () =>{
-    console.log("We are listing to the PORT 3000");
+    console.log(`We are listing to the PORT ${config.PORT}`);
 })
-
-
-
 
 
 
@@ -117,8 +114,8 @@ const sslcommerz = async () =>{
   }
 
 
-app.post('/paynow/:id',async (req,res)=>{
-    console.log(req.params.id);
+app.post('/paynow/:id1',async (req,res)=>{
+    console.log(req.params.id1);
     const payment = await sslcommerz() ;
     res.send ({
         status : 'success' ,

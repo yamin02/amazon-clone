@@ -18,8 +18,7 @@ const SigninScreen = {
                 showMessage(data.error);
             } else {
                 setUserInfo(data);        
-                redirectUser();
-                
+                redirectUser();    
             }
         })
     } ,

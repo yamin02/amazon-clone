@@ -6,6 +6,7 @@ import {
   parserequestUrl,
 } from '../utils';
 import { getOrder, getPaypalClientId, payOrder } from '../api';
+import { apiUrl } from '../config';
 
 
 
@@ -27,15 +28,18 @@ const OrderScreen = {
       isPaid,
       paidAt,
     } = await getOrder(request.id);
-    
-    return `
-    <div>
+    const floatercart = document.getElementById('floating-cart');
+    floatercart.innerHTML = `<button class="your-button-class" id="sslczPayBtn"token= "if you have any token validation"
+    order="If you already have the transaction generated for current order"
+    endpoint="${apiUrl}/paynow/123445"> Pay Now
+    </button>`
+    return `<div><h1>Kutta</h1></div>
     <button class="your-button-class" id="sslczPayBtn"
-        token="if you have any token validation"
-        order="If you already have the transaction generated for current order"
-        endpoint= http://localhost:3000/paynow/${request.id}> Pay Now
-    </button>
-  </div>`
+    token= "if you have any token validation"
+    order="If you already have the transaction generated for current order"
+    endpoint="${apiUrl}/paynow/123445"> Pay Now
+    </button>`
   },
 };
+
 export default OrderScreen;

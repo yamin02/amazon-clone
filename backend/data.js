@@ -26,9 +26,10 @@ export default
             rating: 4.5
         },
         {
-            _id:'3',
+            _id:'311111111111111111111112',
             name : 'full zip ',
             category:'shirts' ,
+            validity : 1,
             image:'/images/product-1.jpg',
             price: 90,
             brand : 'nike',
@@ -37,22 +38,24 @@ export default
             rating: 1.5
         },
         {
-            _id:'4',
+            _id:'411111111111111111111112',
             name : 'zip zip running',
             category:'shirts' ,
             image:'/images/product-1.jpg',
             price: 90,
+            validity : 1,
             brand : 'nike',
             numReviews:10,
             countInstock:2,
             rating: 2.5
         },
         {
-            _id:'5',
+            _id:'511111111111111111111111',
             name : 'xd zip ',
             category:'shirts' ,
             image:'/images/product-1.jpg',
             price: 90,
+            validity : 1,
             brand : 'nike',
             numReviews:10,
             countInstock:10,

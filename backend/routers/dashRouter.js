@@ -32,7 +32,7 @@ dashRouter.post('/', expressAsyncHandler(async(req,res)=>{
     var arr2 = [];
     for (let i = arr.length-1 ; i>0 ; i--){
         if(arr[i].expiryDate >= Date.now()){
-                //console.log(await getcards(arr[i]));
+                console.log(await getcards(arr[i]));
                 arr2.push(await getcards(arr[i]));
             }
         else {
