@@ -69,7 +69,6 @@ app.use(express.static(path.join(__dirname, '/../frontend')));
 //     res.sendFile(path.join(__dirname, '/../frontend/index.html'));
 // });
 
-
 //const port = 3000 ;
 app.listen(config.PORT, () =>{
     console.log(`We are listing to the PORT ${config.PORT}`);

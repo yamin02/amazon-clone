@@ -50,7 +50,7 @@ export const signin = async({email , password})=>{
 export const register = async({name , email , password})=>{
     try {
         const response = await axios({
-            url : `${apiUrl}/api/users/register` ,
+            url : `${apiUrl}/api/users/register`,
             method : 'POST',
             headers : {
                 "Content-Type" : "application/json"
