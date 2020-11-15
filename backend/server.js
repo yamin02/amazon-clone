@@ -11,6 +11,7 @@ import dashRouter from './routers/dashRouter';
 import SSLCommerz from 'sslcommerz-nodejs';
 import path from 'path';
 
+
 mongoose.connect(config.MONGODB_URL , {
     useNewUrlParser: true ,
     useUnifiedTopology: true ,
@@ -64,9 +65,9 @@ app.use('/dashboard' , dashRouter );
 
 //app.use(express.static(path.join(__dirname, '/../frontend/images')));
 app.use(express.static(path.join(__dirname, '/../frontend')));
-app.use('*' , (req,res)=>{
-    res.sendFile(path.join(__dirname, '/../frontend/index.html'));
-});
+// app.use('*' , (req,res)=>{
+//     res.sendFile(path.join(__dirname, '/../frontend/index.html'));
+// });
 
 
 //const port = 3000 ;
@@ -75,7 +76,7 @@ app.listen(config.PORT, () =>{
 })
 
 
-const sslcommerz = async () =>{
+const sslcommerz = async (request) =>{
     let settings = {
         isSandboxMode: true, //false if live version
         store_id: "yamxt5f5374c66828d",
@@ -87,7 +88,7 @@ const sslcommerz = async () =>{
     post_body['total_amount'] = 100.26;
     post_body['currency'] = "BDT";
     post_body['tran_id'] = "12345";
-    post_body['success_url'] = "your success url";
+    post_body['success_url'] = "success url";
     post_body['fail_url'] = "your fail url";
     post_body['cancel_url'] = "your cancel url";
     post_body['emi_option'] = 0;
@@ -114,7 +115,7 @@ const sslcommerz = async () =>{
 
 app.post('/paynow/:id1',async (req,res)=>{
     console.log(req.params.id1);
-    const payment = await sslcommerz() ;
+    const payment = await sslcommerz(req.params.id1) ;
     res.send ({
         status : 'success' ,
         data : payment.GatewayPageURL,
