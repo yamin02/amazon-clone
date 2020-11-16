@@ -112,9 +112,9 @@ const sslcommerz = async (request) =>{
   }
 
 
-app.post('/paynow/:id1',async (req,res)=>{
-    console.log(req.params.id1);
-    const payment = await sslcommerz(req.params.id1) ;
+app.post('/paynow/:id',async (req,res)=>{
+    console.log(req.params.id);
+    const payment = await sslcommerz(req.params.id) ;
     res.send ({
         status : 'success' ,
         data : payment.GatewayPageURL,
