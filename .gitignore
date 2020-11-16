@@ -1,15 +1,12 @@
 node_modules
 package-lock.json
-frontend/node_modules/**
-frontend/package-lock.json
 backend/serviceAccountKey.json
-frontend/main.js
+backend/config.js
 
 dist
 /dist
 node_modules
 /node_modules
-
 
 # testing
 /coverage
@@ -27,3 +24,7 @@ node_modules
 
 frontend/build/**
 frontend/main.js
+frontend/node_modules/**
+frontend/package-lock.json
+frontend/main.js
+
