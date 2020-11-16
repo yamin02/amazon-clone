@@ -20,7 +20,7 @@ mongoose.connect(config.MONGODB_URL , {
     console.log('connected to MONGO DB');
 }).catch((error) =>{
     console.log(error);
-    console.log("its an error ");
+    console.log("MONGODB Error");
 });
 
 const app = express();
