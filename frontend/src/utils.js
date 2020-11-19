@@ -1,4 +1,5 @@
 import { getCartItems } from "./localStorage";
+import LoadingScreen from "./screens/LoadingScreen";
 
 export const parserequestUrl = () => {
     const url = document.location.hash.toLowerCase();
@@ -17,12 +18,16 @@ export const rerender = async (comp) => {
 }
 
 
+// export const showloading = () =>{
+//     document.getElementById('loading-overlay').classList.add('active');
+// };
 export const showloading = () =>{
-    document.getElementById('loading-overlay').classList.add('active');
+    //document.getElementById('world').classList.add('active');
+    document.getElementById('main-container').innerHTML = LoadingScreen.rend() ;
 };
 
 export const hideloading = () =>{
-    document.getElementById('loading-overlay').classList.remove('active');
+    document.getElementById('world').classList.remove('active');
 };
 
 export const showMessage =(msg, callback) =>{
