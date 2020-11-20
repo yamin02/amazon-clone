@@ -18,16 +18,13 @@ export const rerender = async (comp) => {
 }
 
 
-// export const showloading = () =>{
-//     document.getElementById('loading-overlay').classList.add('active');
-// };
 export const showloading = () =>{
-    //document.getElementById('world').classList.add('active');
-    document.getElementById('main-container').innerHTML = LoadingScreen.rend() ;
+    document.getElementById('loading-overlay').classList.add('active');
 };
 
-export const hideloading = () =>{
-    document.getElementById('world').classList.remove('active');
+export const hideloading = (div) =>{
+    document.getElementById('loading-overlay').classList.remove('active');
+    // document.getElementById('main-container').removeChild(div);
 };
 
 export const showMessage =(msg, callback) =>{

@@ -35,19 +35,14 @@
   }
   .overlay {
     display: none;
-    /* position: fixed; */
-    z-index: 1000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(16, 16, 16, 0.5);
+    position: fixed; 
+    
   }
   .overlay.active {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #ffffff;
+    color: #ffffff; 
   }
   .overlay > div {
     background-color: #ffffff;
@@ -469,14 +464,89 @@
 
 
 
-  /* For Loading Page Rocket  */
- /* #world{
-    display: none;
-  } */
- #world{
-    /* position: absolute; */
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: linear-gradient(#144066, #c7c9ea);
-  }
+/* for loading screen */
+:root {
+	 --c_01: #ff1ead;
+	 --c_02: #000;
+	 --c_03: #fff;
+	 --size: 7vmin;
+	 --loader_w: calc(var(--size) * 6);
+	 --loader_h: calc(var(--size) * 2.3);
+	 --bubble: calc(var(--size) * 1.5);
+	 --shine: calc(var(--size) / 5);
+}
+        /* body { */
+            /* background-color: var(--c_02); */
+            /* color: #e0e0e0; */
+            /* height: 100%;
+        } 
+        .loader {
+            width: var(--loader_w);
+            height: var(--loader_h);
+            display: flex;
+            justify-content: center;
+            position: relative;
+            margin: calc(40vh - var(--loader_h)) auto 0;
+        }
+        .bubble {
+            width: var(--bubble);
+            height: var(--bubble);
+            animation: blow 1.6s linear alternate infinite;
+            background-color: var(--c_01);
+            border-radius: 50%;
+            position: absolute;
+            bottom: calc(var(--size) / 1.3);
+            left: 46.5%;
+            transform: scale(0.5) translateY(50%);
+            outline: 1px solid transparent;
+        }
+        .bubble__shine {
+            background-color: var(--c_03);
+            position: absolute;
+        }
+        .bubble__shine--lg {
+            width: var(--shine);
+            height: calc(var(--shine) * 2.5);
+            border-radius: 100% 50% 40% 100% / 50% 30% 30% 100%;
+            top: 2%;
+            left: 26%;
+            transform: rotateZ(60deg);
+        }
+        .bubble__shine--sm {
+            width: calc(var(--shine) / 2);
+            height: calc(var(--shine) / 2);
+            border-radius: 50% 50% 40% 100% / 50% 50% 50% 100%;
+            top: 32%;
+            left: 9%;
+        }
+        .text {
+            align-self: flex-end;
+            color: var(--c_01);
+            font-family: "Major Mono Display", monospace;
+            font-size: var(--size);
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .text__highlight {
+            color: var(--c_03);
+        }
+        @keyframes blow {
+            0% {
+                transform: scale(0.5) translateY(50%);
+            }
+            20% {
+                transform: scale(0.6) translateY(33%);
+            }
+            40% {
+                transform: scale(0.7) translateY(21%);
+            }
+            60% {
+                transform: scale(0.8) translateY(12%);
+            }
+            80% {
+                transform: scale(0.9) translateY(5%);
+            }
+            93%, 100% {
+                transform: scale(1.1) translateY(0) translateZ(0);
+            }
+        }

@@ -13,6 +13,7 @@ import PaymentScreen from './screens/PaymentScreen.js';
 import OrderScreen from './screens/OrderScreen.js';
 import SuccessScreen from './screens/Success.js';
 import DashboardScreen from './screens/Dashboard.js';
+import LoadingScreen from './screens/LoadingScreen.js';
 
 
 const routes ={
@@ -31,8 +32,11 @@ const routes ={
     '/dashboard' : DashboardScreen,
 }
 
+
 const rounter = async () =>{
     showloading();
+    // const loader= document.getElementById('loader');
+    // loader.style.display = 'flex';
     const request = parserequestUrl();
     const parseUrl = 
         (request.resource ? `/${request.resource}` : '/' ) + 
@@ -51,6 +55,7 @@ const rounter = async () =>{
     const main = document.getElementById('main-container');
     main.innerHTML = await screen.rend() ;
     if(screen.after_render){await screen.after_render();}
+    loader.style.display = 'none';
     hideloading();
 };
 
