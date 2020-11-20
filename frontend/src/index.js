@@ -55,7 +55,6 @@ const rounter = async () =>{
     const main = document.getElementById('main-container');
     main.innerHTML = await screen.rend() ;
     if(screen.after_render){await screen.after_render();}
-    loader.style.display = 'none';
     hideloading();
 };
 

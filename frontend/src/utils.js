@@ -22,9 +22,8 @@ export const showloading = () =>{
     document.getElementById('loading-overlay').classList.add('active');
 };
 
-export const hideloading = (div) =>{
+export const hideloading = () =>{
     document.getElementById('loading-overlay').classList.remove('active');
-    // document.getElementById('main-container').removeChild(div);
 };
 
 export const showMessage =(msg, callback) =>{
