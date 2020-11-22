@@ -36,8 +36,6 @@ stages:
       displayName: 'Install Node.js'
 
     - script: |
-        npm install -g @babel/core @babel/cli
-        npm install -g @babel/node @babel/preset-env
         npm run heroku-prebuild
         npm run heroku-postbuild
         npm run serve
