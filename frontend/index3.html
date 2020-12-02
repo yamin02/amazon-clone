@@ -1,0 +1,243 @@
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Hello World</title>
+    </head>
+    <div class="form one">
+    <div>
+        <ul>
+            <li>
+                <h2 class="ordertitle">Order Summary</h2>
+                <p class="date">24 November 2020 Saturday 14:30</p>
+            </li>
+            <li class="image-product">
+            <div>
+                <img src="images/product-1.jpg" alt="Image of product" class="product-img">
+            </div>
+            <div>
+              <p>Netflic Gift cards</p>
+              <p>Best in the order</p>
+              <p>The Best moment</p>
+            </div>
+            </li>
+            <li>
+              <h2>Total Price : BDT 420.00</h2>
+            </li>
+        </ul>
+    </div>
+    </div>
+
+
+    <div class="form two">
+      <div>
+        <h2>
+          Choose a Payemnt Method : 
+        </h2>
+      </div>
+      <div class="row">
+        <div class="column" onclick="openTab('b1');" style="background:rgb(243, 164, 250);">
+        <img src="images/bkashLogo.png" alt="Bkash" class="logo bkashlogo">
+        </div>
+        <div class="column" onclick="openTab('b2');" style="background:rgba(0, 0, 0, 0.849);"><img src="images/nagadlogo.png" alt="" class="logo nagadlogo"></div>
+        <div class="column" onclick="openTab('b3');" style="background:#8c3494;"><img src="images/rocketlLogo.png" alt="" class="logo rocketLogo"></div>
+      </div>
+      
+      <!-- The expanding grid (hidden by default) -->
+      <div id="b1" class="containerTab" style="display:none;background:rgba(193, 87, 202, 0.493)">
+        <!-- If you want the ability to close the container, add a close button -->
+        <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
+        <h2>Box 1</h2>
+        <p>Lorem ipsum..</p>
+      </div>
+      
+      <div id="b2" class="containerTab" style="display:none;background:rgba(240, 128, 128, 0.849)">
+        <span onclick="this.parentElement.style.display='none'" class="closebtn">x</span>
+        <h2>Box 2</h2>
+        <p>Lorem ipsum..</p>
+      </div>
+      
+      <div id="b3" class="containerTab" style="display:none;background:#8c3494">
+        <span onclick="this.parentElement.style.display='none'" class="closebtn"><i class="fa fa-times-circle"></i></span>
+        <h2>Box 3</h2>
+        <p>Lorem ipsum..</p>
+        <span class="data phone">Phone Number : 
+        <input type="tel" id='phoneNum' placeholder="01818672900">
+      </span> <br>
+      <div id="paid-button" onclick="openTab2('form3');">Yes i paid the money</div>
+      </div>
+    </div>
+
+    <div id="form3" class="form three" style="display:none;background:rgba(193, 87, 202, 0.493)">
+      <h2 style="text-align: center;">Verifying your payment ...</h2>
+      <p class="verifyList">
+        <span>Your Ip address</span>
+        <span id='yes'><i class="fa fa-spinner"></i></span>
+      </p>
+      <p class="verifyList">
+        <span>Payment Transaction Id</span>
+        <span id='yes'><i class="fa fa-spinner"></i></span>
+      </p>
+      <p class="verifyList">
+        <span>Your Mobile Number</span>
+        <span id='yes'><i class="fa fa-spinner"></i></span>
+      </p>
+      <p class="verifyList">
+        <span>Amount Paid</span>
+        <span id='yes'><i class="fa fa-spinner"></i></span>
+      </p>
+    </div>
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+        li{
+            list-style: none;
+        }
+        h2{
+         font-family: 'Noto Sans', sans-serif;
+        }
+        p{
+          font-family: 'Open Sans', sans-serif;
+        }
+        .form{
+                max-width : 90%;
+                margin: 0 auto;
+                border: 5px solid black;
+                margin-bottom: 10px;
+                padding: 15px;
+            }
+
+        img{
+            max-width: 50%;
+            /* height: 100%; */
+        } 
+        .image-product{
+          display: flex;
+          flex-direction: row;
+        }
+        .image-product > div{
+          flex-basis: content;
+          padding: 5px;
+          text-align: right;
+        }
+
+    .verifyList{
+      font-weight: bolder;
+    }
+    #yes{
+      font-size: 155%;
+      float: right;
+      font-weight: bolder;
+      color: rgb(211, 58, 78);
+      animation: spin 2s linear infinite;
+    }     
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+
+    #paid-button{
+      border: 3px solid black;
+      height: 40px;
+    }
+
+
+    .data{
+      font-size: large;
+      font-weight: 800;
+      color: aliceblue;
+      font-family: 'Noto Sans', sans-serif;
+    }
+
+    #phoneNum::placeholder{
+      color:rgba(10, 10, 10, 0.39);
+      text-align: left;
+    }
+    #phoneNum{
+      text-align: left;
+      padding: 10px;
+      font-size: large;
+      font-family: 'Noto Sans', sans-serif;
+      outline-style: groove;
+      height: 40px;
+      width: fit-content;
+      border-bottom:3px solid black;
+    }
+
+    .logo{
+      width: 60%;
+      /* border: 3px solid black; */
+      /* width: fit-content; */
+
+    }
+    .row{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      flex-basis: 30%;
+      /* flex: 2  4 200px */
+    }
+    .column {
+      /* float: left; */
+      width: 32%;
+      flex-wrap: wrap;
+      flex-direction: row;
+      padding: 1px;
+      text-align: center;
+      font-size: 25px;
+      cursor: pointer;
+      /* color: rgb(17, 17, 17); */
+    }
+
+    .containerTab {
+      margin-top: 13px;
+      padding: 20px;
+      color: rgb(10, 10, 10);
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Closable button inside the image */
+    .closebtn {
+      float: right;
+      color: white;
+      font-size: 35px;
+      cursor: pointer;
+    }
+    </style>
+    <script>
+      addEventListener
+      function openTab(tabName) {
+  var i, x;
+  x = document.getElementsByClassName("containerTab");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  document.getElementById(tabName).style.display = "block";
+}
+
+function openTab2(id){
+  document.getElementById(id).style.display = "block";
+}
+function greenlogo() {
+const spinner = document.querySelectorAll('#yes');
+for (i of spinner){
+    i.innerHTML= '<i class="fa fa-check-circle"></i>';
+    i.style.animation = 'none';
+    i.style.color = "green" ;
+}
+}
+
+setTimeout(greenlogo,3000);
+    </script>
+</form>
+
+</body>
+</html>

@@ -9,6 +9,10 @@ export const setCartitems = (cartItems) =>{
     localStorage.setItem('cartItems' , JSON.stringify(cartItems));   
 }
 
+export const setOrderitem = (item) =>{
+    localStorage.setItem('orderItem' , JSON.stringify(orderItem));   
+}
+
 export const setUserInfo = ({
     id = '',
     name = '',

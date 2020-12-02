@@ -13,6 +13,7 @@ import PaymentScreen from './screens/PaymentScreen.js';
 import OrderScreen from './screens/OrderScreen.js';
 import SuccessScreen from './screens/Success.js';
 import DashboardScreen from './screens/Dashboard.js';
+import realOrderScreen from './screens/realOrderScreen.js';
 
 
 const routes ={
@@ -29,6 +30,7 @@ const routes ={
     '/orders/:id' : OrderScreen,
     '/success/:id' : SuccessScreen,
     '/dashboard' : DashboardScreen,
+    '/realorder/:id' : realOrderScreen,
 }
 
 const rounter = async () =>{

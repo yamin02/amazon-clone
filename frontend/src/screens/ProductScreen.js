@@ -5,8 +5,9 @@ import {parserequestUrl} from '../utils.js';
 const ProductScreen ={
     after_render: () =>{
         const request = parserequestUrl() ;
-        document.getElementById('add-button').addEventListener('click' ,()=>{
-            document.location.hash = `/cart/${request.id}` ;
+        document.getElementById('add-button').addEventListener('click', ()=>{
+            document.location.hash = `/realorder/${request.id}` ;
+          
         })
     },
     rend: async () =>{
@@ -35,7 +36,7 @@ const ProductScreen ={
               })}
               </li>
               <li>
-                Price: <strong>$${product.price}</strong>
+                Price: <strong>BDT ${product.price}</strong>
               </li>
               <li>
                 Description:
@@ -52,14 +53,13 @@ const ProductScreen ={
                 </li>
                 <li>
                   Status : 
-                    ${
-                      product.countInstock > 0
+                    ${product.countInstock > 0
                         ? `<span class="success">In Stock</span>`
                         : `<span class="error">Unavailable</span>`
-                    }
+                      }
                 </li>
                 <li>
-                    <button id="add-button" class="fw primary">Add to Cart </div>
+                    <button id="add-button" class="fw primary">Buy Now</div>
               </ul>
           </div>
         </div>

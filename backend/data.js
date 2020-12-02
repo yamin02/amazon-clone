@@ -61,5 +61,65 @@ export default
             countInstock:10,
             rating: 4.5
         },
+        {
+            _id:'611111111711111111111112',
+            name : 'full zip ',
+            category:'shirts' ,
+            validity : 1,
+            image:'/images/product-2.jpg',
+            price: 90,
+            brand : 'nike',
+            numReviews:10,
+            countInstock:6,
+            rating: 1.5
+        },
+        {
+            _id:'711111111111111101111112',
+            name : 'full zip ',
+            category:'shirts' ,
+            validity : 1,
+            image:'/images/product-2.jpg',
+            price: 90,
+            brand : 'nike',
+            numReviews:10,
+            countInstock:6,
+            rating: 1.5
+        },
+        {
+            _id:'811111111111211111111112',
+            name : 'full zip ',
+            category:'shirts' ,
+            validity : 1,
+            image:'/images/product-1.jpg',
+            price: 90,
+            brand : 'nike',
+            numReviews:10,
+            countInstock:6,
+            rating: 1.5
+        },
+        {
+            _id:'911711111111111111111112',
+            name : 'full zip ',
+            category:'shirts' ,
+            validity : 1,
+            image:'/images/product-2.jpg',
+            price: 90,
+            brand : 'nike',
+            numReviews:10,
+            countInstock:6,
+            rating: 1.5
+        },
+        {
+            _id:'111111111111214111111112',
+            name : 'full zip ',
+            category:'shirts' ,
+            validity : 1,
+            image:'/images/product-1.jpg',
+            price: 90,
+            brand : 'nike',
+            numReviews:10,
+            countInstock:6,
+            rating: 1.5
+        }
     ]
 }

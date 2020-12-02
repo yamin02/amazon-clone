@@ -32,12 +32,12 @@ export const showMessage =(msg, callback) =>{
         <button id='message-overlay-close-button'>OK</button>
     </div>` ;
     document.getElementById('message-overlay').classList.add('active');
-    document
-    .getElementById("message-overlay-close-button")
-    .addEventListener('click' ,()=>{
+    document.getElementById("message-overlay-close-button")
+    .addEventListener('click' , ()=>{
         document.getElementById('message-overlay').classList.remove('active');
         if(callback){
             callback();
+            // will trigger a call back function if provided e.g showMwssage('loveit', ()=>{...})
         }
     })
 }

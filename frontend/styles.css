@@ -2,12 +2,16 @@
     box-sizing: border-box;
   }
   html {
-    font-size: 62.5%; /* 16px * 62.5 = 10px = 1rem */
+    font-size: 56.5%; 
+    /* 16px * 62.5 = 10px = 1rem */
+    /* width: 100%; */
   }
   body {
-    height: 100vh;
+    /* height: 100vh; */
+    /* width: 100%; */
     font: 1.6rem Helvetica, Arial;
     margin: 0;
+    /* width: 100%; */
   }
   a {
     color: #000000;
@@ -77,7 +81,8 @@
       'main'
       'footer';
     grid-template-columns: 1fr;
-    grid-template-rows: 5rem 1fr 5rem;
+    grid-template-rows: 6rem 1fr 5rem;
+    grid-row-gap: 10px;
     height: 100%;
   }
   header {
@@ -87,7 +92,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem;
+    padding: 1rem;
+
   }
   header a {
     color: #ffffff;
@@ -103,13 +109,17 @@
     padding-left: 1rem;
   }
   footer {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
     background-color: #203040;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #ffffff;
-    height: fit-content;
-    padding: 15px;
+    /* height: fit-content; */
+    height: 60px;
+    /* padding: 25px; */
   }
   /* Products */
   .products {
@@ -121,11 +131,22 @@
     justify-content: center;
   }
   .products li {
-    flex: 0 1 30rem;
+    /* flex: 1 1.5 6%; */
+    flex-basis: 15%;
+    flex-wrap: wrap;
     margin: 1rem;
     margin-bottom: 0;
-    height: 42rem;
-    border-top: 0.2rem #e0e0e0 solid;
+    /* height: 42rem; */
+    /* 1 rem =  16px */
+    border-top: 0.2rem #ee7676 solid;
+  }
+  @media only screen and (min-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+    .product li{
+      flex-basis: 40%;
+    }
   }
   .product {
     display: flex;
@@ -134,6 +155,7 @@
     height: 100%;
   }
   .product img {
+    border: 1px solid black;
     max-height: 26rem;
     max-width: 22rem;
     margin-top: 2rem;
@@ -466,3 +488,127 @@
     border-top:2px solid #f08000;
     padding-left: 50px ;
   }
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+    li{
+        list-style: none;
+    }
+    h2{
+     font-family: 'Noto Sans', sans-serif;
+    }
+    p{
+      font-family: 'Open Sans', sans-serif;
+    }
+    .form{
+            max-width : 90%;
+            margin: 0 auto;
+            border: 5px solid black;
+            margin-bottom: 10px;
+            padding: 15px;
+        }
+
+    img{
+        max-width: 50%;
+        /* height: 100%; */
+    } 
+    .image-product{
+      display: flex;
+      flex-direction: row;
+    }
+    .image-product > div{
+      flex-basis: content;
+      padding: 5px;
+      text-align: right;
+    }
+
+.verifyList{
+  font-weight: bolder;
+}
+#yes{
+  font-size: 155%;
+  float: right;
+  font-weight: bolder;
+  color: rgb(211, 58, 78);
+  animation: spin 2s linear infinite;
+}     
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+#paid-button{
+  border: 3px solid black;
+  height: 40px;
+}
+
+
+.data{
+  font-size: large;
+  font-weight: 800;
+  color: aliceblue;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+#phoneNum::placeholder{
+  color:rgba(10, 10, 10, 0.39);
+  text-align: left;
+}
+.phoneNum{
+  text-align: left;
+  padding: 10px;
+  font-size: large;
+  font-family: 'Noto Sans', sans-serif;
+  outline-style: groove;
+  height: 40px;
+  width: fit-content;
+  border-bottom:3px solid black;
+}
+
+.logo{
+  width: 60%;
+  /* border: 3px solid black; */
+  /* width: fit-content; */
+
+}
+.row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-basis: 30%;
+  /* flex: 2  4 200px */
+}
+.column {
+  /* float: left; */
+  width: 32%;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 1px;
+  text-align: center;
+  font-size: 25px;
+  cursor: pointer;
+  /* color: rgb(17, 17, 17); */
+}
+
+.containerTab {
+  margin-top: 13px;
+  padding: 20px;
+  color: rgb(10, 10, 10);
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Closable button inside the image */
+.closebtn {
+  float: right;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
