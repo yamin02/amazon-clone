@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "nodemon --exec babel-node backend/server.js",
-    "build": "babel backend -d dist" ,
+    "build": "babel backend -d dist",
     "start": "node dist/server.js",
     "heroku-prebuild": "cd frontend && npm install --dev",
     "heroku-postbuild": "npm run build && cd frontend && npm install && npm run build"
@@ -36,8 +36,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.9",
     "nodemon": "^2.0.5",
-    "path": "^0.12.7",
-    "sslcommerz-nodejs": "^1.0.8" 
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "eslint": "^7.10.0",

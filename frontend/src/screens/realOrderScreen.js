@@ -1,30 +1,82 @@
+import axios from "axios";
 import { getProduct } from "../api";
 import { parserequestUrl } from "../utils";
+import { apiUrl } from "../config";
+
+const verifyPayment = async(RefNum)=>{
+  try{
+    const response = await axios({
+      // url: `${apiUrl}/getpayment/verify` ,
+      url : 'http://localhost:5000/getpayment/verify',
+      method : 'post',
+      headers :{
+        "Content-Type" : "application/json" ,
+      },
+      data : {
+        "RefNum" : RefNum 
+    }
+    })
+    return response.data ;
+  }catch(err){
+    return {
+      error : err.response.data.message 
+    }
+  }
+}
+
+const getRandomString = ()=>{
+  var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var result = '';
+  for ( var i = 0; i < 9; i++ ) {
+      result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+  }
+  return result;
+}
+
+const openTab = (num) => {
+  var i, x;
+  x = document.getElementsByClassName("containerTab");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  x[num].style.display = "block";
+}
+
+const  greenlogo = ()=> {
+  const spinner = document.querySelectorAll('#yes');
+  for (var i of spinner){
+      i.innerHTML= '<i class="fa fa-check-circle"></i>';
+      i.style.animation = 'none';
+      i.style.color = "green" ;}
+  }
+
 
 const realOrderScreen ={
     after_render : ()=>{
-      const openTab = (num) => {
-        var i, x;
-        x = document.getElementsByClassName("containerTab");
-        for (i = 0; i < x.length; i++) {
-          x[i].style.display = "none";
-        }
-        x[num].style.display = "block";
+      const reqURL = parserequestUrl();
+      const randomRef = getRandomString();
+      const reference = document.getElementsByClassName("Ref");
+      for ( var z of reference){
+        z.innerHTML = `<h2>${randomRef}</h2>`;
       }
-
-      // function greenlogo() {
-      // const spinner = document.querySelectorAll('#yes');
-      // for (i of spinner){
-      //     i.innerHTML= '<i class="fa fa-check-circle"></i>';
-      //     i.style.animation = 'none';
-      //     i.style.color = "green" ;}
-      // }
-     // setTimeout(greenlogo,3000);
-
-      for (var q of document.getElementsByClassName('verifypay')){
-        q.addEventListener('click',()=>{
-          document.getElementById('form3').style.display = "block";
-          scrollBy(0,240);
+  
+    for (var q of document.getElementsByClassName('verifypay')){
+      q.addEventListener('click', ()=>{
+        document.getElementById('form3').style.display = "block";
+        scrollBy(0,240);
+        console.log('button is clicked');
+        setTimeout(async ()=>{
+          console.log("waiting for 3sec")
+          const response = await verifyPayment(randomRef);
+          if(response.message === "Payment Verified"){
+            console.log('fuck yaa');
+            greenlogo;
+            document.location.hash = `/success/${reqURL.id}`
+          }else{
+            console.log("Payment NOT verified");
+          }
+        },3000);
+  
         })
       }
 
@@ -32,16 +84,15 @@ const realOrderScreen ={
         for (var p of x){
         p.addEventListener('click',(e)=>{
           const a = e.target.className.split(" ") ;
-          console.log('clicked');
+          console.log('payment logo clicked');
           openTab(parseInt(a[1]));
           scrollBy(0,230)
         });
       }
     },
 
-    rend : async () =>{      
+    rend : async () =>{     
       const request = parserequestUrl();
-      console.log(request.id)
       const product = await getProduct(request.id);
         if(product.error){
             return `<div>${product.error} error : Sorry no product found </div>`
@@ -90,17 +141,17 @@ const realOrderScreen ={
             <!-- If you want the ability to close the container, add a close button -->
             <span onclick="this.parentElement.style.display='none'" class="closebtn"><i class="fa fa-times-circle"></i></span>
             <h2>Bkash</h2>
-            <p>Lorem ipsum..</p>
+            <p class="Ref">Lorem ipsum..</p>
             <span class="data phone">Phone Number : 
             <input type="tel" class='phoneNum' placeholder="01818672900">
           </span> <br>
-          <div id="paid-button" class='verifypay'>Yes i paid the money</div>
+          <div id="paid-button1" class='verifypay'>Yes i paid the money</div>
           </div>
           
           <div id="b2" class="containerTab" style="display:none;background:rgba(240, 128, 128, 0.849)">
           <span onclick="this.parentElement.style.display='none'" class="closebtn"><i class="fa fa-times-circle"></i></span>
           <h2>Nagad</h2>
-          <p>Lorem ipsum..</p>
+          <p class="Ref">Lorem ipsum..</p>
           <span class="data phone">Phone Number : 
           <input type="tel" class='phoneNum' placeholder="01818672900">
         </span> <br>
@@ -110,7 +161,7 @@ const realOrderScreen ={
           <div id="b3" class="containerTab" style="display:none;background:#8c3494">
             <span onclick="this.parentElement.style.display='none'" class="closebtn"><i class="fa fa-times-circle"></i></span>
             <h2>Rocket</h2>
-            <p>Lorem ipsum..</p>
+            <p class="Ref">Lorem ipsum..</p>
             <span class="data phone">Phone Number : 
             <input type="tel" class='phoneNum' placeholder="01818672900">
           </span> <br>

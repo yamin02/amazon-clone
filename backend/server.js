@@ -8,8 +8,8 @@ import bodyParser from 'body-parser';
 import orderRouter from './routers/orderRouter';
 import successRouter from './routers/successRouter';
 import dashRouter from './routers/dashRouter';
-import SSLCommerz from 'sslcommerz-nodejs';
 import path from 'path';
+import allpayemntRooter from './routers/allpaymentget';
 
 
 mongoose.connect(config.MONGODB_URL , {
@@ -55,10 +55,6 @@ app.use((err,req,res,next)=>{
 //for placing order
 app.use('/api/orders' , orderRouter);
 
-//paypal Payment
-app.get('/api/paypal/clientId', (req, res) => {
-    res.send({ clientId: config.PAYPAL_CLIENT_ID });
-  });
 
 app.use('/success', successRouter);
 app.use('/dashboard' , dashRouter );
@@ -75,49 +71,5 @@ app.listen(config.PORT, () =>{
 })
 
 
-const sslcommerz = async (request) =>{
-    let settings = {
-        isSandboxMode: true, //false if live version
-        store_id: "yamxt5f5374c66828d",
-        store_passwd: "yamxt5f5374c66828d@ssl"
-    }
-     
-    let sslcommerz = new SSLCommerz(settings);
-    let post_body = {};
-    post_body['total_amount'] = 100.26;
-    post_body['currency'] = "BDT";
-    post_body['tran_id'] = "12345";
-    post_body['success_url'] = "success url";
-    post_body['fail_url'] = "your fail url";
-    post_body['cancel_url'] = "your cancel url";
-    post_body['emi_option'] = 0;
-    post_body['cus_name'] = "test";
-    post_body['cus_email'] = "test@test.com";
-    post_body['cus_phone'] = "01700000000";
-    post_body['cus_add1'] = "customer address";
-    post_body['cus_city'] = "Dhaka";
-    post_body['cus_country'] = "Bangladesh";
-    post_body['shipping_method'] = "NO";
-    post_body['multi_card_name'] = ""
-    post_body['num_of_item'] = 1;
-    post_body['product_name'] = "Test";
-    post_body['product_category'] = "Test Category";
-    post_body['product_profile'] = "general";
-    try {
-        const response = await sslcommerz.init_transaction(post_body);
-        return response;
-    }catch(error){
-        console.log(error);
-    }  
-  }
+app.use('/getpayment', allpayemntRooter);
 
-
-app.post('/paynow/:id',async (req,res)=>{
-    console.log(req.params.id);
-    const payment = await sslcommerz(req.params.id) ;
-    res.send ({
-        status : 'success' ,
-        data : payment.GatewayPageURL,
-        logo : payment.storeLogo,
-    })
-})

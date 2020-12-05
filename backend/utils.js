@@ -30,3 +30,16 @@ export const isAuth = (req, res, next) => {
       });
     }
   };
+
+
+  export const Sms2data = (smsbody)=>{
+    // You have received Tk 40.00 from 01818672900. Ref hakku10. Fee Tk 0.00. Balance Tk 140.00. TrxID 7L386369TA at 03/12/2020 22:16
+    const sms2split = smsbody.split(" ");
+    return {
+      TrnxID : sms2split[sms2split.indexOf("TrxID")+1],
+      RefNum : sms2split[sms2split.indexOf("Ref")+1].slice(0, -1),
+      paymentDate : Date.now() ,
+      amountpaid : parseInt(sms2split[sms2split.indexOf("received") + 2]) ,
+      buyerNumber : sms2split[sms2split.indexOf("from")+1].slice(0, -1) ,
+    }
+  }
