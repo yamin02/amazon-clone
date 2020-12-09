@@ -210,3 +210,26 @@ export const getPaypalClientId = async () => {
     //console.log(response.data.allcodes)
     return response.data.allcodes ;
   }
+
+export const verifyPayment = async(RefNum, Price, ipAddress)=>{
+  try{
+    const response = await axios({
+      // url: `${apiUrl}/getpayment/verify` ,
+      url : `${apiUrl}/getpayment/verify`,
+      method : 'post',
+      headers :{
+        "Content-Type" : "application/json" ,
+      },
+      data : {
+        "RefNum" : RefNum ,
+        "Price" :  Price,
+        "ipAddress" : ipAddress
+    }
+    })
+    return response.data ;
+  }catch(err){
+    return {
+      error : err.response.data.message 
+    }
+  }
+}

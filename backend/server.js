@@ -46,7 +46,6 @@ app.get('/api/products/:id', (req, res)=> {
 app.use('/api/users' , userRouter);
 
 //all errors in express and express-async-handler can be handled with this:
-//
 app.use((err,req,res,next)=>{
     const status = err.name && (err.name === "validationError" ? 400 : 500 );
     res.status(status).send({message: err.message});

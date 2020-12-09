@@ -6,7 +6,6 @@ const CheckoutSteps ={
         <div class="${props.step3? 'active' : ''} ">Payment</div>
         <div class="${props.step4? 'active' : ''} ">Place Order</div>
         </div>`  
-
     },
     
 }

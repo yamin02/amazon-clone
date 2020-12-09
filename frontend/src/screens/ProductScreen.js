@@ -1,13 +1,13 @@
 import { getProduct } from '../api.js';
 import Rating from '../components/ratings.js';
+import { getUserinfo } from '../localStorage.js';
 /* eslint-disable no-unused-vars */
 import {parserequestUrl} from '../utils.js';
 const ProductScreen ={
     after_render: () =>{
         const request = parserequestUrl() ;
-        document.getElementById('add-button').addEventListener('click', ()=>{
-            document.location.hash = `/realorder/${request.id}` ;
-          
+        document.getElementById('buy-button').addEventListener('click', ()=>{
+          document.location.hash = `/realorder/${request.id}` ;
         })
     },
     rend: async () =>{
@@ -59,7 +59,7 @@ const ProductScreen ={
                       }
                 </li>
                 <li>
-                    <button id="add-button" class="fw primary">Buy Now</div>
+                    <button id="buy-button" class="fw primary">Buy Now</div>
               </ul>
           </div>
         </div>

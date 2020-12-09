@@ -1,31 +1,12 @@
 import axios from "axios";
-import { getProduct } from "../api";
-import { parserequestUrl } from "../utils";
+import { getProduct, verifyPayment } from "../api";
+import { parserequestUrl, showMessage } from "../utils";
 import { apiUrl } from "../config";
+import { getUserinfo } from "../localStorage";
 
-const verifyPayment = async(RefNum)=>{
-  try{
-    const response = await axios({
-      // url: `${apiUrl}/getpayment/verify` ,
-      url : 'http://localhost:5000/getpayment/verify',
-      method : 'post',
-      headers :{
-        "Content-Type" : "application/json" ,
-      },
-      data : {
-        "RefNum" : RefNum 
-    }
-    })
-    return response.data ;
-  }catch(err){
-    return {
-      error : err.response.data.message 
-    }
-  }
-}
 
 const getRandomString = ()=>{
-  var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZpallUscoppabcdefghijklmnopqrstuvwxyz01237456789';
   var result = '';
   for ( var i = 0; i < 9; i++ ) {
       result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
@@ -33,60 +14,97 @@ const getRandomString = ()=>{
   return result;
 }
 
-const openTab = (num) => {
-  var i, x;
-  x = document.getElementsByClassName("containerTab");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
+const  addgreenlogo = (num , isTrue )=> {
+  const spinner = document.querySelectorAll('#yes');
+  spinner[num].innerHTML= isTrue ? '<i class="fa fa-check-circle"></i>' : '<i class="fa fa-times-circle"></i>';
+  spinner[num].style.animation = 'none';
+  spinner[num].style.color = isTrue ? "green" : "red" ;
   }
-  x[num].style.display = "block";
+
+const addspinner = () =>{
+  const spinner = document.querySelectorAll('#yes');
+  for ( var spin of spinner){
+    spin.innerHTML = '<i class="fa fa-spinner">' ;
+    spin.style.animation = "spin 2s linear infinite" ;
+    spin.style.color = "red" ;
+  }
 }
 
-const  greenlogo = ()=> {
-  const spinner = document.querySelectorAll('#yes');
-  for (var i of spinner){
-      i.innerHTML= '<i class="fa fa-check-circle"></i>';
-      i.style.animation = 'none';
-      i.style.color = "green" ;}
+  // opens the block when payment-method btn clicked
+  const openTab = (num,x) => {
+    var i;
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    x[num].style.display = "block";
   }
+
+  async function getIpAdress(){
+    const resp = await fetch("https://api.ipify.org/?format=json");
+    const data = await resp.json();
+    console.log(data.ip);
+    if(data){
+      addgreenlogo(0, true);
+    }
+    return data.ip
+}
 
 
 const realOrderScreen ={
     after_render : ()=>{
-      const reqURL = parserequestUrl();
+      var conTab = document.getElementsByClassName("containerTab");
+
+      // Generating the reference amount  
       const randomRef = getRandomString();
       const reference = document.getElementsByClassName("Ref");
       for ( var z of reference){
         z.innerHTML = `<h2>${randomRef}</h2>`;
       }
-  
+      
+    // The verify payment Button is clicked
+    const reqURL = parserequestUrl();
+    const productPrice = parseInt(document.getElementById("product-price").innerText);
     for (var q of document.getElementsByClassName('verifypay')){
       q.addEventListener('click', ()=>{
         document.getElementById('form3').style.display = "block";
         scrollBy(0,240);
         console.log('button is clicked');
+        addspinner();
         setTimeout(async ()=>{
-          console.log("waiting for 3sec")
-          const response = await verifyPayment(randomRef);
-          if(response.message === "Payment Verified"){
-            console.log('fuck yaa');
-            greenlogo;
+          console.log("waiting for 3sec");
+          const ipAdress = getIpAdress();
+          console.log(ipAdress);
+          const response = await verifyPayment(randomRef,productPrice,ipAdress);
+          console.log(response);
+          
+          if(response.err === "None"){
+            addgreenlogo(1,true);addgreenlogo(2,true);addgreenlogo(3,true);
+            showMessage(response.message);
             document.location.hash = `/success/${reqURL.id}`
-          }else{
-            console.log("Payment NOT verified");
+          } else if(response.err === "paidLess"){
+            showMessage(response.message);
+            addgreenlogo(1,true);addgreenlogo(2,true);addgreenlogo(3,false)
+          } else {
+            showMessage(response.message);
+            addgreenlogo(1,false);addgreenlogo(2,false);addgreenlogo(3,false)
           }
         },3000);
-  
         })
       }
 
+      // the payment logo clicked 
         const x = document.getElementsByClassName('column');
         for (var p of x){
         p.addEventListener('click',(e)=>{
+          if(getUserinfo().name){
           const a = e.target.className.split(" ") ;
           console.log('payment logo clicked');
-          openTab(parseInt(a[1]));
-          scrollBy(0,230)
+          openTab(parseInt(a[1]), conTab);
+          scrollBy(0,230);
+        }
+          else{
+            document.location.hash = `/signin`
+          }
         });
       }
     },
@@ -115,7 +133,7 @@ const realOrderScreen ={
                 </div>
                 </li>
                 <li>
-                  <h2>Total Price : BDT ${product.price}</h2>
+                  <h2>Total Price : BDT <span id="product-price">${product.price}</span></h2>
                 </li>
             </ul>
         </div>

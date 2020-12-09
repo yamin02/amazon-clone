@@ -6,7 +6,7 @@ const Header = {
     rend : () =>{
         const {name} = getUserinfo();
         return `<div class= 'brand'>
-        <a href="/#/">js amazon</a>
+        <a href="/#/" id= 'title'>dekte thako</a>
     </div>
     <div>
     ${name 
@@ -14,7 +14,6 @@ const Header = {
     <a href="/#/profile">${name}</a>` 
     : '<a href="/#/signin">Sign-In</a>'
     }
-        <a href="/#/cart">Cart</a>
     </div>`
     }
 }

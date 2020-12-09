@@ -22,6 +22,7 @@ const allpaymentSchema = new mongoose.Schema(
     TrnxID : { type: String, required: true },
     paymentDate : { type: Date, required: true },
     amountpaid : { type: Number, required: true },
+    ipAddress : {type: String},
     isDelivered: { 
       type: Boolean, 
       required: true, 
